@@ -39,11 +39,15 @@ const styles = StyleSheet.create({
 
 function StartScreen ({ navigation }) {
 
+    const signOutUser = () => {
+        auth().signOut()
+    }
+
     return (
         <KeyboardAvoidingView style={styles.container}>
             <SafeAreaView>
                 <Text>Hello World</Text>
-                <TouchableOpacity style={styles.button} onPress={() => { auth().signOut() }}>
+                <TouchableOpacity style={styles.button} onPress={() => { signOutUser }}>
                     <Text>Sign Out</Text>
                 </TouchableOpacity>
             </SafeAreaView>

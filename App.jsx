@@ -23,13 +23,14 @@ export default function App () {
   const { isAuthenticated } = appState
 
   useEffect(() => {
-    auth().onAuthStateChanged(() => {
-      setAppState({
-        isAuthenticated: true,
-      })
+    auth().onAuthStateChanged((user) => {
+      if (user) {
+        setAppState({
+          isAuthenticated: true,
+        })
+      }
     })
   })
-  console.log(isAuthenticated)
   return (
     < SafeAreaProvider >
       <StatusBar style="auto" />
