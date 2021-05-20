@@ -4,6 +4,7 @@ import { auth } from '../firebase'
 import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form";
 import { Picker } from '@react-native-picker/picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const styles = StyleSheet.create({
     container: {
@@ -47,15 +48,16 @@ function StartScreen ({ navigation }) {
     const signOutUser = () => {
         auth().signOut()
     }
-
+    const [date, setDate] = useState(new Date())
     return (
         <KeyboardAvoidingView style={styles.container}>
             <SafeAreaView>
-                <Text>Hello World</Text>
+                <Text>National Health Index:</Text>
                 <Controller
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
+                            keyboardType='numeric'
                             placeholder="National Health Index"
                             style={styles.userInputContainer}
                             onBlur={onBlur}
@@ -64,7 +66,7 @@ function StartScreen ({ navigation }) {
                         />
                     )}
                     name="nationalHealthIndex"
-                    rules={{ required: true }}
+                    rules={{ required: true, maxLength: 10 }}
                     defaultValue=""
                 />
                 {errors.nationalHealthIndex && <Text>This is required.</Text>}
@@ -72,10 +74,12 @@ function StartScreen ({ navigation }) {
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
                         <Picker
+                            selectedValue={value}
                             onValueChange={onChange}
                             onBlur={onBlur}
                             value={value}
                         >
+                            <Picker.Item label=" " value=" " />
                             <Picker.Item label="Mr" value="Mr" />
                             <Picker.Item label="Mrs" value="Mrs" />
                             <Picker.Item label="Miss" value="Miss" />
@@ -83,11 +87,11 @@ function StartScreen ({ navigation }) {
                         </Picker>
 
                     )}
-                    name="Title"
-                    rules={{ required: true }}
+                    name="title"
+                    rules={{ required: true, minLength: 2 }}
                     defaultValue=""
                 />
-                {errors.tite && <Text>This is required.</Text>}
+                {errors.title && <Text>This is required.</Text>}
                 <Controller
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
