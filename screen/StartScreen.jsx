@@ -140,7 +140,24 @@ function StartScreen ({ navigation }) {
                     defaultValue=""
                 />
                 {errors.preferredName && <Text>This is required.</Text>}
+                <Controller
+                    control={control}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            placeholder="Address"
+                            style={styles.userInputContainer}
+                            onBlur={onBlur}
+                            onChangeText={value => onChange(value)}
+                            value={value}
+                        />
+                    )}
+                    name="address"
+                    rules={{ required: true }}
+                    defaultValue=""
+                />
+                {errors.address && <Text>This is required.</Text>}
                 <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+                    
                     <Text>Submit</Text>
                 </TouchableOpacity>
             </SafeAreaView>
