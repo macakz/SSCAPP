@@ -58,11 +58,13 @@ const styles = StyleSheet.create({
 });
 
 function StartScreen ({ navigation }) {
-
+    const currentDate = new Date();
+    const timestamp = currentDate.getTime()
     const { control, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => firebase.database().ref("patient").set(data)
+    const onSubmit = data => firebase.database().ref("Patient" + timestamp).set(data)
 
-    
+
+    console.log(timestamp)
 
     return (
         <ScrollView>
