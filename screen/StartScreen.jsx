@@ -1,11 +1,11 @@
-import React, { useState, useLayoutEffect } from 'react';
-import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, View, Button, StyleSheet, Text, TouchableOpacity, Image, TextInput, } from 'react-native';
+import React, { useState, useLayoutEffect } from 'react'
+import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, View, Button, StyleSheet, Text, TouchableOpacity, Image, TextInput, } from 'react-native'
 import { auth } from '../firebase'
+import firebase from 'firebase'
 import { useSelector } from 'react-redux'
-import { useForm, Controller } from "react-hook-form";
-import { Picker } from '@react-native-picker/picker';
+import { useForm, Controller } from "react-hook-form"
+import { Picker } from '@react-native-picker/picker'
 import { CheckBox } from 'react-native-elements'
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -60,10 +60,9 @@ const styles = StyleSheet.create({
 function StartScreen ({ navigation }) {
 
     const { control, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-    const signOutUser = () => {
-        auth().signOut()
-    }
+    const onSubmit = data => firebase.database().ref("patient").set(data)
+
+    
 
     return (
         <ScrollView>
