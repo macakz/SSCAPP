@@ -1,9 +1,10 @@
 import React, { useState, useLayoutEffect } from 'react';
-import { KeyboardAvoidingView, SafeAreaView, ScrollView, View, Button, StyleSheet, Text, TouchableOpacity, Image, TextInput, } from 'react-native';
+import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, View, Button, StyleSheet, Text, TouchableOpacity, Image, TextInput, } from 'react-native';
 import { auth } from '../firebase'
 import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form";
 import { Picker } from '@react-native-picker/picker';
+import { CheckBox } from 'react-native-elements'
 
 const styles = StyleSheet.create({
     container: {
@@ -23,6 +24,13 @@ const styles = StyleSheet.create({
         padding: 10,
         width: 300,
 
+    },
+    userInputContaineFocus: {
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: 'red',
+        padding: 10,
+        width: 300,
     },
     userInputContainerLarge: {
         borderWidth: 1,
@@ -56,7 +64,6 @@ function StartScreen ({ navigation }) {
     const signOutUser = () => {
         auth().signOut()
     }
-
 
     return (
         <ScrollView>
@@ -286,19 +293,49 @@ function StartScreen ({ navigation }) {
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
-                            <TextInput
-                                placeholder="Membership Number"
-                                style={styles.userInputContainer}
-                                onBlur={onBlur}
-                                onChangeText={value => onChange(value)}
-                                value={value}
-                            />
+                            <>
+                                <Text>Are you a NZ resident?</Text>
+                                <Switch
+                                    value={value}
+                                    onBlur={onBlur}
+                                    trackColor={{ false: '#767577', true: 'green' }}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={value => onChange(value)}
+                                />
+                            </>
                         )}
-                        name="membershipNumber"
+                        name="nzResident"
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.membershipNumber && <Text>This is required.</Text>}
+                    <Controller
+                        control={control}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <>
+                                <Text>
+                                    Clinical photographs are often taken as part of your medical record.
+                                    On occasion these are used for educational, teaching and publication purposes.
+                                    In this case your personal details are kept confidential and you will not be identified in any way.
+                                    Identifiable photographs e.g. of your face or distinctive marks such as tattoos will only be used
+                                    with your express written consent.
+                                </Text>
+                                <Text>
+                                    I have read and understood the above statement
+                                </Text>
+                                <Switch
+                                    value={value}
+                                    onBlur={onBlur}
+                                    trackColor={{ false: '#767577', true: 'green' }}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={value => onChange(value)}
+                                />
+                            </>
+                        )}
+                        name="consent"
+                        rules={{ required: true }}
+                        defaultValue=""
+                    />
+                    {errors.consent && <Text>This is required.</Text>}
                     <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
