@@ -58,13 +58,20 @@ const styles = StyleSheet.create({
 });
 
 function StartScreen ({ navigation }) {
-    const currentDate = new Date();
-    const timestamp = currentDate.getTime()
+    const today = new Date();
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const todayDay = days[today.getDay()]
+    const todayDate = today.getDate()
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const todayMonth = months[today.getMonth()]
+    const todayYear = today.getFullYear()
+    const currentDate = `${todayDay} ${todayDate} ${todayMonth} ${todayYear} `
+    
     const { control, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => firebase.database().ref("Patient" + timestamp).set(data)
+    const onSubmit = data => firebase.database().ref("patient" + day).set(data)
 
 
-    console.log(timestamp)
+    console.log(currentDate)
 
     return (
         <ScrollView>
