@@ -68,7 +68,7 @@ function StartScreen ({ navigation }) {
     const currentDate = `${todayDay} ${todayDate} ${todayMonth} ${todayYear} `
     
     const { control, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => firebase.database().ref("patient" + day).set(data)
+    const onSubmit = data => firebase.database().ref(currentDate).child(firstName).set(data)
 
 
     console.log(currentDate)
