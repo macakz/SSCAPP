@@ -5,7 +5,8 @@ import firebase from 'firebase'
 import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
-import { CheckBox } from 'react-native-elements'
+import RadioGroup from 'react-native-radio-buttons-group';
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -55,6 +56,9 @@ const styles = StyleSheet.create({
     buttonText: {
 
     },
+    errorText: {
+        color: "red"
+    },
 });
 
 function StartScreen ({ navigation }) {
@@ -65,16 +69,28 @@ function StartScreen ({ navigation }) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const todayMonth = months[today.getMonth()]
     const todayYear = today.getFullYear()
-    const currentDate = `${todayDay} ${todayDate} ${todayMonth} ${todayYear} `
-    
+    const currentDate = `${todayDay} ${todayDate} ${todayMonth} ${todayYear}`
+    const currentHour = today.getHours()
+    const currentMinutes = today.getMinutes()
+    const currentSeconds = today.getSeconds()
+    const currentTime = `${currentHour}:${currentMinutes}:${currentSeconds}`
+    const residentOptions = [{
+        id: '1', // acts as primary key, should be unique and non-empty string
+        label: 'Yes',
+        value: 'Yes'
+    }, {
+        id: '2',
+        label: 'No',
+        value: 'No'
+    }]
     const { control, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => firebase.database().ref(currentDate).child(firstName).set(data)
+
+    const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
 
 
-    console.log(currentDate)
 
     return (
-        <ScrollView>
+        <ScrollView >
             <KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={15} style={styles.container}>
                 <SafeAreaView>
                     <Text>National Health Index:</Text>
@@ -94,7 +110,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true, maxLength: 10 }}
                         defaultValue=""
                     />
-                    {errors.nationalHealthIndex && <Text>This is required.</Text>}
+                    {errors.nationalHealthIndex && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -116,7 +132,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true, minLength: 2 }}
                         defaultValue=""
                     />
-                    {errors.title && <Text>This is required.</Text>}
+                    {errors.title && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -132,7 +148,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.firstName && <Text>This is required.</Text>}
+                    {errors.firstName && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -148,7 +164,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.firstName && <Text>This is required.</Text>}
+                    {errors.firstName && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -164,7 +180,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.preferredName && <Text>This is required.</Text>}
+                    {errors.preferredName && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -180,7 +196,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.address && <Text>This is required.</Text>}
+                    {errors.address && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -197,12 +213,11 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.phone && <Text>This is required.</Text>}
+                    {errors.phone && <Text style={styles.errorText} t>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-
                                 placeholder="E-mail"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
@@ -214,12 +229,11 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.email && <Text>This is required.</Text>}
+                    {errors.email && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-
                                 placeholder="GP Name"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
@@ -231,7 +245,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.gpName && <Text>This is required.</Text>}
+                    {errors.gpName && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -247,7 +261,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.gpSuburb && <Text>This is required.</Text>}
+                    {errors.gpSuburb && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -260,11 +274,11 @@ function StartScreen ({ navigation }) {
                                 value={value}
                             />
                         )}
-                        name="gpSuburb"
+                        name="currentMedication"
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.currentMedication && <Text>This is required.</Text>}
+                    {errors.currentMedication && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -277,11 +291,11 @@ function StartScreen ({ navigation }) {
                                 value={value}
                             />
                         )}
-                        name="Drug Allergies"
+                        name="drugAllergies"
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.drugAllergies && <Text>This is required.</Text>}
+                    {errors.drugAllergies && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -297,18 +311,35 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.insuranceCompany && <Text>This is required.</Text>}
+                    {errors.insuranceCompany && <Text style={styles.errorText}>This is required.</Text>}
+                    <Controller
+                        control={control}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <TextInput
+                                keyboardType='numeric'
+                                placeholder="Membership Number"
+                                style={styles.userInputContainer}
+                                onBlur={onBlur}
+                                onChangeText={value => onChange(value)}
+                                value={value}
+                            />
+                        )}
+                        name="membershipNumber"
+                        rules={{ required: true }}
+                        defaultValue=""
+                    />
+                    {errors.membershipNumber && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <>
                                 <Text>Are you a NZ resident?</Text>
-                                <Switch
+                                <RadioGroup
+                                    layout='row'
+                                    radioButtons={residentOptions}
                                     value={value}
                                     onBlur={onBlur}
-                                    trackColor={{ false: '#767577', true: 'green' }}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={value => onChange(value)}
+                                    onPress={value => onChange(value)}
                                 />
                             </>
                         )}
@@ -316,6 +347,8 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
+                    {errors.nzResident && <Text style={styles.errorText}>This is required.</Text>}
+
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -343,7 +376,7 @@ function StartScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.consent && <Text>This is required.</Text>}
+                    {errors.consent && <Text style={styles.errorText}>This is required.</Text>}
                     <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
