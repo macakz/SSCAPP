@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     errorText: {
         color: "red"
     },
+
 });
 
 function StartScreen ({ navigation }) {
@@ -339,7 +340,7 @@ function StartScreen ({ navigation }) {
                                     radioButtons={residentOptions}
                                     value={value}
                                     onBlur={onBlur}
-                                    onPress={value => onChange(value)}
+                                    onPress={value => onChange(value[0].selected)}
                                 />
                             </>
                         )}
