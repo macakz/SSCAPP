@@ -146,7 +146,7 @@ function StartScreen ({ navigation }) {
                             />
                         )}
                         name="firstName"
-                        rules={{ required: true }}
+                        rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
                     {errors.firstName && <Text style={styles.errorText}>This is required.</Text>}
@@ -162,7 +162,7 @@ function StartScreen ({ navigation }) {
                             />
                         )}
                         name="lastName"
-                        rules={{ required: true }}
+                        rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
                     {errors.firstName && <Text style={styles.errorText}>This is required.</Text>}
@@ -178,7 +178,7 @@ function StartScreen ({ navigation }) {
                             />
                         )}
                         name="preferredName"
-                        rules={{ required: true }}
+                        rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
                     {errors.preferredName && <Text style={styles.errorText}>This is required.</Text>}
