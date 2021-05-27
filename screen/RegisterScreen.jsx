@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import RadioGroup from 'react-native-radio-buttons-group';
+import { Checkbox } from 'react-native-paper';
 
 const styles = StyleSheet.create({
     container: {
@@ -84,6 +85,9 @@ function RegisterScreen ({ navigation }) {
         label: 'No',
         value: 'No'
     }]
+
+    const [checked, setChecked] = useState(false);
+
     const { control, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
@@ -335,17 +339,16 @@ function RegisterScreen ({ navigation }) {
                         render={({ field: { onChange, onBlur, value } }) => (
                             <>
                                 <Text>Are you a NZ resident?</Text>
-                                <RadioGroup
-                                    layout='row'
-                                    radioButtons={residentOptions}
+                                <Switch
                                     value={value}
                                     onBlur={onBlur}
-                                    onPress={value => onChange(value[0].selected)}
+                                    trackColor={{ false: '#767577', true: 'green' }}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={value => onChange(value)}
                                 />
                             </>
                         )}
                         name="nzResident"
-                        rules={{ required: true }}
                         defaultValue=""
                     />
                     {errors.nzResident && <Text style={styles.errorText}>This is required.</Text>}

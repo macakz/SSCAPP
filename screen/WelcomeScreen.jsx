@@ -59,16 +59,17 @@ const styles = StyleSheet.create({
 
 function WelcomeScreen ({ navigation }) {
     return (
-        <ScrollView>
-            <KeyboardAvoidingView style={styles.container}>
-                <SafeAreaView>
-                    <Text>Hello World</Text>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Register')}>
-                        <Text>Submit</Text>
-                    </TouchableOpacity>
-                </SafeAreaView>
-            </KeyboardAvoidingView>
-        </ScrollView>
+        <KeyboardAvoidingView style={styles.container}>
+            <Image
+                style={styles.logo}
+                source={require('../assets/logo.png')}
+            />
+            <SafeAreaView>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Register')}>
+                    <Text>Register</Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        </KeyboardAvoidingView>
 
     )
 }
