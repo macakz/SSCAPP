@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 
 });
 
-function StartScreen ({ navigation }) {
+function RegisterScreen ({ navigation }) {
     const today = new Date();
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const todayDay = days[today.getDay()]
@@ -390,4 +390,4 @@ function StartScreen ({ navigation }) {
 
 
 
-export default StartScreen
+export default RegisterScreen

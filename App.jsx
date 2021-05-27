@@ -4,10 +4,10 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { isFirebaseAppExisted, initializeFirebase, auth } from './firebase'
 import LoginScreen from './screen/LoginScreen'
 import RegisterScreen from './screen/RegisterScreen'
-import { isFirebaseAppExisted, initializeFirebase, auth } from './firebase'
-
+import WelcomeScreen from './screen/WelcomeScreen'
 
 const AppStack = createStackNavigator()
 
@@ -51,14 +51,24 @@ export default function App () {
             )}
           {isAuthenticated &&
             (
-              <AppStack.Screen
-                name="Register"
-                component={RegisterScreen}
-                options={{
-                  title: 'Register',
-                  headerShown: true,
-                }}
-              />
+              <>
+                <AppStack.Screen
+                  name="Welcome"
+                  component={WelcomeScreen}
+                  options={{
+                    title: 'Welcome',
+                    headerShown: false,
+                  }}
+                />
+                <AppStack.Screen
+                  name="Register"
+                  component={RegisterScreen}
+                  options={{
+                    title: 'Register',
+                    headerShown: true,
+                  }}
+                />
+              </>
             )}
         </AppStack.Navigator>
       </NavigationContainer>
