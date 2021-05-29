@@ -5,8 +5,6 @@ import firebase from 'firebase'
 import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
-import RadioGroup from 'react-native-radio-buttons-group';
-import { Checkbox } from 'react-native-paper';
 import 'firebase/firestore'
 
 const styles = StyleSheet.create({
@@ -77,21 +75,11 @@ function RegisterScreen ({ navigation }) {
     const currentMinutes = today.getMinutes()
     const currentSeconds = today.getSeconds()
     const currentTime = `${currentHour}:${currentMinutes}:${currentSeconds}`
-    const residentOptions = [{
-        id: '1', // acts as primary key, should be unique and non-empty string
-        label: 'Yes',
-        value: 'Yes'
-    }, {
-        id: '2',
-        label: 'No',
-        value: 'No'
-    }]
-
-    const [checked, setChecked] = useState(false);
 
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
 
+    //firebase realtime database below
     // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
 
     const onSubmit = data => db.collection("Patient").add({ data, createdAt: firebase.firestore.Timestamp.now() })
