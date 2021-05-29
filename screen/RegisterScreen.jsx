@@ -94,8 +94,7 @@ function RegisterScreen ({ navigation }) {
 
     // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
 
-    const onSubmit = data => db.collection("Patient").add(data)
-
+    const onSubmit = data => db.collection("Patient").add({ data, createdAt: firebase.firestore.Timestamp.now() })
     return (
         <ScrollView >
             <KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={15} style={styles.container}>
