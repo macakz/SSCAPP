@@ -6,7 +6,7 @@ export const firebaseConfig = {
     storageBucket: "skin-specialist-centre.appspot.com",
     messagingSenderId: "186609597149",
     appId: "1:186609597149:web:40ba8c5ecf259e38467934"
-};
+}
 
 export default {
     firebaseConfig,

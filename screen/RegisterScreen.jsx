@@ -7,6 +7,7 @@ import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import RadioGroup from 'react-native-radio-buttons-group';
 import { Checkbox } from 'react-native-paper';
+import 'firebase/firestore'
 
 const styles = StyleSheet.create({
     container: {
@@ -89,10 +90,11 @@ function RegisterScreen ({ navigation }) {
     const [checked, setChecked] = useState(false);
 
     const { control, handleSubmit, formState: { errors } } = useForm();
+    const db = firebase.firestore()
 
-    const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
+    // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
 
-
+    const onSubmit = data => db.collection("Patient").add(data)
 
     return (
         <ScrollView >
