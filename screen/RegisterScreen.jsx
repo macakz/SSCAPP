@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, View, Button, StyleSheet, Text, TouchableOpacity, Image, TextInput, } from 'react-native'
+import { Modal, TouchableHighlight, KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, View, Button, StyleSheet, Text, TouchableOpacity, Image, TextInput, } from 'react-native'
 import { auth } from '../firebase'
 import firebase from 'firebase'
 import { useSelector } from 'react-redux'
@@ -49,6 +49,11 @@ const styles = StyleSheet.create({
         fontSize: 15,
         height: 100,
     },
+    datePicker: {
+        width: 300,
+        fontSize: 15,
+        height: 300,
+    },
     button: {
         alignSelf: 'center',
         alignItems: 'center',
@@ -83,13 +88,18 @@ function RegisterScreen ({ navigation }) {
     const currentSeconds = today.getSeconds()
     const currentTime = `${currentHour}:${currentMinutes}:${currentSeconds}`
 
+    //DATE OF BIRTH 
+    const [dateOfBirth, setDateOfBirth] = useState(currentDate)
+    const [showDOB, setShowDOB] = useState(false)
+
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
+
+    const onSubmit = data => db.collection("Patient").add({ data, createdAt: firebase.firestore.Timestamp.now() })
 
     //firebase realtime database below
     // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
 
-    const onSubmit = data => db.collection("Patient").add({ data, createdAt: firebase.firestore.Timestamp.now() })
     return (
         <ScrollView >
             <KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={15} style={styles.container}>
@@ -202,6 +212,56 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.preferredName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.preferredName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
+                    <Controller
+                        control={control}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <TouchableHighlight
+                                activeOpacity={0}
+                                onPress={() => setShowDOB(true)}>
+                                <View>
+                                    <Text>
+                                        {dateOfBirth}
+                                    </Text>
+                                    <Modal
+                                        transparent={true}
+                                        animationType="slide"
+                                        visible={showDOB}
+                                        supportedOrientations={['portrait']}
+                                        onRequestClose={() => setShowDOB(false)}
+                                    >
+                                        <View style={{ flex: 1 }}>
+                                            <TouchableHighlight
+                                                style={{
+                                                    flex: 1,
+                                                    alignItems: 'flex-end',
+                                                    flexDirection: 'row',
+                                                }}
+                                                activeOpacity={1}
+                                                visible={showDOB}
+                                                onPress={() => setShowDOB(false)}>
+                                                <TouchableHighlight 
+                                                underlayColor= '#fff'
+                                                style={{
+                                                    flex:1,
+                                                    borderTopColor: 'black',
+                                                    borderTopWidth: 1,
+                                                }}
+                                                onPress={()=> console.log('datepicker clicker')}>
+                                                </TouchableHighlight>
+                                                <View>
+                                                    
+                                                </View>
+                                            </TouchableHighlight>
+                                        </View>
+                                    </Modal>
+                                </View>
+                            </TouchableHighlight>
+                        )}
+                        name="dateOfBirth"
+                        rules={{ required: true }}
+                        defaultValue=""
+                    />
+                    {errors.dateOfBirth?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                     <Controller
                         control={control}
@@ -408,7 +468,7 @@ function RegisterScreen ({ navigation }) {
                 </SafeAreaView>
 
             </KeyboardAvoidingView >
-        </ScrollView>
+        </ScrollView >
     );
 }
 
