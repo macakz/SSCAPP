@@ -5,6 +5,8 @@ import firebase from 'firebase'
 import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 import 'firebase/firestore'
 
 const styles = StyleSheet.create({
@@ -41,6 +43,11 @@ const styles = StyleSheet.create({
         width: 300,
         height: 200,
         textAlignVertical: "top"
+    },
+    pickerStyle: {
+        width: 300,
+        fontSize: 15,
+        height: 100,
     },
     button: {
         alignSelf: 'center',
@@ -87,13 +94,15 @@ function RegisterScreen ({ navigation }) {
         <ScrollView >
             <KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={15} style={styles.container}>
                 <SafeAreaView>
-                    <Text>National Health Index:</Text>
+                    <Text>
+                        National Health Index:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 keyboardType='numeric'
-                                placeholder="National Health Index"
+                                placeholder="#"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -105,6 +114,9 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.nationalHealthIndex && <Text style={styles.errorText}>This is required.</Text>}
+                    <Text>
+                        Title:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -113,6 +125,7 @@ function RegisterScreen ({ navigation }) {
                                 onValueChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
+                                itemStyle={styles.pickerStyle}
                             >
                                 <Picker.Item label=" " value=" " />
                                 <Picker.Item label="Mr" value="Mr" />
@@ -126,12 +139,17 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true, minLength: 2 }}
                         defaultValue=""
                     />
-                    {errors.title && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.title?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.title?.type === "minLength" && <Text style={styles.errorText}>Please select a title.</Text>}
+
+                    <Text>
+                        First Name:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                placeholder="First Name"
+                                placeholder="John"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -144,12 +162,14 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.firstName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
-
+                    <Text>
+                        Last Name:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                placeholder="Last Name"
+                                placeholder="Smith"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -162,12 +182,14 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.lastName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
-
+                    <Text>
+                        Preferred Name:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                placeholder="Preferred Name"
+                                placeholder="John"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -196,7 +218,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.address && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.address?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -213,7 +235,9 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true, pattern: /([1-9][0-9]*)|0/ }}
                         defaultValue=""
                     />
-                    {errors.phone && <Text style={styles.errorText} t>This is required.</Text>}
+                    {errors.phone?.type === "required" && <Text style={styles.errorText} t>This is required.</Text>}
+                    {errors.phone?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid phone number.</Text>}
+
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -229,7 +253,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.email && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.email?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -245,7 +269,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.gpName && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.gpName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -261,7 +285,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.gpSuburb && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.gpSuburb?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -278,7 +302,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.currentMedication && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.currentMedication?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -295,7 +319,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.drugAllergies && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.drugAllergies?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -311,7 +335,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.insuranceCompany && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.insuranceCompany?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -328,12 +352,14 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.membershipNumber && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.membershipNumber?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <>
-                                <Text>Are you a NZ resident?</Text>
+                                <Text>
+                                    Are you a NZ resident?
+                                </Text>
                                 <Switch
                                     value={value}
                                     onBlur={onBlur}
@@ -346,7 +372,7 @@ function RegisterScreen ({ navigation }) {
                         name="nzResident"
                         defaultValue=""
                     />
-                    {errors.nzResident && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.nzResident?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                     <Controller
                         control={control}
@@ -375,7 +401,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.consent && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.consent?.type === "required" && <Text style={styles.errorText}>Please confirm the above statement.</Text>}
                     <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
