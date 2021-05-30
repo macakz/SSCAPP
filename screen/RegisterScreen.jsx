@@ -142,7 +142,9 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
-                    {errors.firstName && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.firstName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
+
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -158,7 +160,9 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
-                    {errors.firstName && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.lastName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
+
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -174,7 +178,9 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
-                    {errors.preferredName && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.preferredName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.preferredName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
+
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -204,7 +210,7 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="phone"
-                        rules={{ required: true }}
+                        rules={{ required: true, pattern: /([1-9][0-9]*)|0/ }}
                         defaultValue=""
                     />
                     {errors.phone && <Text style={styles.errorText} t>This is required.</Text>}
