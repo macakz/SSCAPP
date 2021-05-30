@@ -215,47 +215,15 @@ function RegisterScreen ({ navigation }) {
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
-                            <TouchableHighlight
-                                activeOpacity={0}
-                                onPress={() => setShowDOB(true)}>
-                                <View>
-                                    <Text>
-                                        {dateOfBirth}
-                                    </Text>
-                                    <Modal
-                                        transparent={true}
-                                        animationType="slide"
-                                        visible={showDOB}
-                                        supportedOrientations={['portrait']}
-                                        onRequestClose={() => setShowDOB(false)}
-                                    >
-                                        <View style={{ flex: 1 }}>
-                                            <TouchableHighlight
-                                                style={{
-                                                    flex: 1,
-                                                    alignItems: 'flex-end',
-                                                    flexDirection: 'row',
-                                                }}
-                                                activeOpacity={1}
-                                                visible={showDOB}
-                                                onPress={() => setShowDOB(false)}>
-                                                <TouchableHighlight 
-                                                underlayColor= '#fff'
-                                                style={{
-                                                    flex:1,
-                                                    borderTopColor: 'black',
-                                                    borderTopWidth: 1,
-                                                }}
-                                                onPress={()=> console.log('datepicker clicker')}>
-                                                </TouchableHighlight>
-                                                <View>
-                                                    
-                                                </View>
-                                            </TouchableHighlight>
-                                        </View>
-                                    </Modal>
-                                </View>
-                            </TouchableHighlight>
+
+                            <DateTimePicker timeZoneOffsetInMinutes={0}
+                                value={new Date(dateOfBirth)}
+                                onBlur={onBlur}
+                                mode="date"
+                                onValueChange={value => onChange(value)}
+                            />
+
+
                         )}
                         name="dateOfBirth"
                         rules={{ required: true }}
