@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
     buttonText: {
 
     },
+    confirmation: {
+        fontWeight: "bold"
+    },
     errorText: {
         color: "red"
     },
@@ -102,8 +105,8 @@ function RegisterScreen ({ navigation }) {
 
     return (
         <ScrollView >
-            <KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={15} style={styles.container}>
-                <SafeAreaView>
+            <KeyboardAvoidingView>
+                <SafeAreaView style={styles.container}>
                     <Text>
                         National Health Index:
                     </Text>
@@ -149,8 +152,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true, minLength: 2 }}
                         defaultValue=""
                     />
-                    {errors.title?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-                    {errors.title?.type === "minLength" && <Text style={styles.errorText}>Please select a title.</Text>}
+                    {errors.title && <Text style={styles.errorText}>This is required.</Text>}
 
                     <Text>
                         First Name:
@@ -224,7 +226,7 @@ function RegisterScreen ({ navigation }) {
                                 style={styles.userInputContainer}
                                 type={'datetime'}
                                 options={{
-                                    format: 'dd/MM/yyyy'
+                                    format: 'DD/MM/YYYY'
                                 }}
                                 onChangeText={value => onChange(value)}
                                 onBlur={onBlur}
@@ -310,7 +312,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                
+
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -342,14 +344,14 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.gpSuburb?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Text>
-                        Current Medications:
+                        Current Medications (Please include any supplements):
                     </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 multiline={true}
-                                placeholder="Please include any supplements."
+                                placeholder="Please type none if this does not apply"
                                 style={styles.userInputContainerLarge}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -362,14 +364,14 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.currentMedication?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Text>
-                    Drug Allergies:
+                        Drug Allergies (Name of medication and description of reaction):
                     </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 multiline={true}
-                                placeholder="Name of medication and description of reaction."
+                                placeholder="Please type none if this does not apply"
                                 style={styles.userInputContainerLarge}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -381,11 +383,13 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.drugAllergies?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    <Text>
+                        Insurance Company:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                placeholder="Insurance Company"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -393,16 +397,16 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="insuranceCompany"
-                        rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.insuranceCompany?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    <Text>
+                        Membership Number:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 keyboardType='numeric'
-                                placeholder="Membership Number"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -410,10 +414,9 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="membershipNumber"
-                        rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.membershipNumber?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -445,7 +448,7 @@ function RegisterScreen ({ navigation }) {
                                     Identifiable photographs e.g. of your face or distinctive marks such as tattoos will only be used
                                     with your express written consent.
                                 </Text>
-                                <Text>
+                                <Text style={styles.confirmation}>
                                     I have read and understood the above statement
                                 </Text>
                                 <Switch
@@ -461,7 +464,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.consent?.type === "required" && <Text style={styles.errorText}>Please confirm the above statement.</Text>}
+                    {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
