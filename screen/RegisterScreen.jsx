@@ -5,7 +5,9 @@ import firebase from 'firebase'
 import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
-import DateTimePicker from '@react-native-community/datetimepicker';
+
+import { TextInputMask } from 'react-native-masked-text'
+
 
 import 'firebase/firestore'
 
@@ -215,13 +217,26 @@ function RegisterScreen ({ navigation }) {
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
-
-                            <DateTimePicker timeZoneOffsetInMinutes={0}
-                                value={new Date(dateOfBirth)}
+                            <TextInputMask
+                                keyboardType="numeric"
+                                style={styles.userInputContainer}
+                                type={'datetime'}
+                                options={{
+                                    format: 'dd/MM/yyyy'
+                                }}
+                                onChangeText={value => onChange(value)}
                                 onBlur={onBlur}
-                                mode="date"
-                                onValueChange={value => onChange(value)}
+                                value={value}
+                                placeholder='DD/MM/YYY'
+
                             />
+                            // <DateTimePicker
+                            //     value={new Date(dateOfBirth)}
+                            //     mode="date"
+                            //     selectedValue={value}
+                            //     onValueChange={onChange}
+                            //     onBlur={onBlur}
+                            // />
 
 
                         )}
