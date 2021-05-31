@@ -303,11 +303,14 @@ function RegisterScreen ({ navigation }) {
                     {errors.email?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.email?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid email.</Text>}
 
+                    <Text>
+                        GP Name:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                placeholder="GP Name"
+                                
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -319,6 +322,9 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.gpName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    <Text>
+                        GP Suburb:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -335,12 +341,15 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.gpSuburb?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    <Text>
+                        Current Medications:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 multiline={true}
-                                placeholder="Current Medications"
+                                placeholder="Please include any supplements."
                                 style={styles.userInputContainerLarge}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -352,12 +361,15 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.currentMedication?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    <Text>
+                    Drug Allergies:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 multiline={true}
-                                placeholder="Drug Allergies"
+                                placeholder="Name of medication and description of reaction."
                                 style={styles.userInputContainerLarge}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -421,7 +433,6 @@ function RegisterScreen ({ navigation }) {
                         name="nzResident"
                         defaultValue=""
                     />
-                    {errors.nzResident?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                     <Controller
                         control={control}
