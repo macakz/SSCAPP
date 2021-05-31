@@ -91,7 +91,7 @@ function RegisterScreen ({ navigation }) {
     const currentTime = `${currentHour}:${currentMinutes}:${currentSeconds}`
 
 
-
+    const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
 
@@ -297,10 +297,12 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="email"
-                        rules={{ required: true }}
+                        rules={{ required: true, pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ }}
                         defaultValue=""
                     />
                     {errors.email?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.email?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid email.</Text>}
+
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
