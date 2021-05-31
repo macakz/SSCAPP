@@ -90,9 +90,7 @@ function RegisterScreen ({ navigation }) {
     const currentSeconds = today.getSeconds()
     const currentTime = `${currentHour}:${currentMinutes}:${currentSeconds}`
 
-    //DATE OF BIRTH 
-    const [dateOfBirth, setDateOfBirth] = useState(currentDate)
-    const [showDOB, setShowDOB] = useState(false)
+
 
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
@@ -194,6 +192,7 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.lastName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
+
                     <Text>
                         Preferred Name:
                     </Text>
@@ -214,6 +213,9 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.preferredName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.preferredName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
+                    <Text>
+                        Date of Birth:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -228,24 +230,19 @@ function RegisterScreen ({ navigation }) {
                                 onBlur={onBlur}
                                 value={value}
                                 placeholder='DD/MM/YYY'
-
                             />
-                            // <DateTimePicker
-                            //     value={new Date(dateOfBirth)}
-                            //     mode="date"
-                            //     selectedValue={value}
-                            //     onValueChange={onChange}
-                            //     onBlur={onBlur}
-                            // />
-
-
                         )}
                         name="dateOfBirth"
-                        rules={{ required: true }}
+                        rules={{ required: true, minLength: 8, pattern: /([1-9][0-9]*)|0/ }}
                         defaultValue=""
                     />
                     {errors.dateOfBirth?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.dateOfBirth?.type === "minLength" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
+                    {errors.dateOfBirth?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
 
+                    <Text>
+                        Address:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -262,6 +259,10 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.address?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+
+                    <Text>
+                        Phone Number:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -281,11 +282,14 @@ function RegisterScreen ({ navigation }) {
                     {errors.phone?.type === "required" && <Text style={styles.errorText} t>This is required.</Text>}
                     {errors.phone?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid phone number.</Text>}
 
+                    <Text>
+                        Email:
+                    </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                placeholder="E-mail"
+                                placeholder="johnsmith@mail.com"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
