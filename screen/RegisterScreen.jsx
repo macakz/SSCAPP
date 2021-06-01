@@ -5,10 +5,7 @@ import firebase from 'firebase'
 import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
-
 import { TextInputMask } from 'react-native-masked-text'
-
-
 import 'firebase/firestore'
 
 const styles = StyleSheet.create({
@@ -80,29 +77,13 @@ const styles = StyleSheet.create({
 });
 
 function RegisterScreen ({ navigation }) {
-    const today = new Date();
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const todayDay = days[today.getDay()]
-    const todayDate = today.getDate()
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    const todayMonth = months[today.getMonth()]
-    const todayYear = today.getFullYear()
-    const currentDate = `${todayDay} ${todayDate} ${todayMonth} ${todayYear}`
-    const currentHour = today.getHours()
-    const currentMinutes = today.getMinutes()
-    const currentSeconds = today.getSeconds()
-    const currentTime = `${currentHour}:${currentMinutes}:${currentSeconds}`
-
-
-    const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
-
     const onSubmit = data => db.collection("Patient").add({ data, createdAt: firebase.firestore.Timestamp.now() })
-
+    
     //firebase realtime database below
     // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
-
+    
     return (
         <ScrollView >
             <KeyboardAvoidingView>
@@ -114,6 +95,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                onFocus={styles.highlight}
                                 keyboardType='numeric'
                                 placeholder="#"
                                 style={styles.userInputContainer}
