@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, NavigationHelpersContext } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { isFirebaseAppExisted, initializeFirebase, auth } from './firebase'
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -77,10 +77,17 @@ export default function App () {
                   <AppStack.Screen
                     name="Register"
                     component={RegisterScreen}
-                    options={{
+                    options={({ navigation }) => ({
                       title: 'Register',
                       headerShown: true,
-                    }}
+                      headerRight: () => (
+                        <Button
+                          onPress={() => navigation.replace('Welcome')}
+                          title="Reset"
+                          color="#000"
+                        />
+                      ),
+                    })}
                   />
                 </>
               )}

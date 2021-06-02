@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, } from 'react-native'
+import { KeyboardAvoidingView, SafeAreaView, Switch, Button, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, } from 'react-native'
 import { auth } from '../firebase'
 import firebase from 'firebase'
 import { useSelector } from 'react-redux'
@@ -86,6 +86,7 @@ function RegisterScreen ({ navigation }) {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Please fill in your details below',
+            
         })
     })
 
