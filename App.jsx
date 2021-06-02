@@ -83,7 +83,7 @@ export default function App () {
                       headerRight: () => (
                         <Button
                           onPress={() => navigation.replace('Welcome')}
-                          title="Reset"
+                          title="Reset Form"
                           color="#000"
                         />
                       ),
