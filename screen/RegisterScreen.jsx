@@ -114,7 +114,7 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true, maxLength: 10 }}
                         defaultValue=""
                     />
-                    {errors.nationalHealthIndex && <Text style={styles.errorText}>This is required.</Text>}
+                    {/* {errors.nationalHealthIndex && <Text style={styles.errorText}>This is required.</Text>} */}
                     <Text>
                         Title:
                     </Text>
