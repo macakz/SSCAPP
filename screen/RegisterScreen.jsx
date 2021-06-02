@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react'
-import { Modal, TouchableHighlight, KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, View, Button, StyleSheet, Text, TouchableOpacity, Image, TextInput, } from 'react-native'
+import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, } from 'react-native'
 import { auth } from '../firebase'
 import firebase from 'firebase'
 import { useSelector } from 'react-redux'
@@ -80,10 +80,15 @@ function RegisterScreen ({ navigation }) {
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
     const onSubmit = data => db.collection("Patient").add({ data, createdAt: firebase.firestore.Timestamp.now() })
-    
+
     //firebase realtime database below
     // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
-    
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: 'Please fill in your details below',
+        })
+    })
+
     return (
         <ScrollView >
             <KeyboardAvoidingView>
