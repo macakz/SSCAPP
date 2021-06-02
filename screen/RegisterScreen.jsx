@@ -111,7 +111,7 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="nationalHealthIndex"
-                        rules={{ required: true, maxLength: 10 }}
+                        // rules={{ required: true }}
                         defaultValue=""
                     />
                     {/* {errors.nationalHealthIndex && <Text style={styles.errorText}>This is required.</Text>} */}
