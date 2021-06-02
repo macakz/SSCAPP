@@ -347,10 +347,12 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="currentMedication"
-                        rules={{ required: true }}
+                        rules={{ required: true, minLength: 4, }}
                         defaultValue=""
                     />
                     {errors.currentMedication?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.currentMedication?.type === "minLength" && <Text style={styles.errorText}>Please state your current medications, or type none.</Text>}
+
                     <Text>
                         Drug Allergies (Name of medication and description of reaction):
                     </Text>
@@ -367,10 +369,12 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="drugAllergies"
-                        rules={{ required: true }}
+                        rules={{ required: true, minLength: 4,  }}
                         defaultValue=""
                     />
                     {errors.drugAllergies?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.drugAllergies?.type === "minLength" && <Text style={styles.errorText}>Please state your drug allergies, or type none.</Text>}
+
                     <Text>
                         Insurance Company:
                     </Text>
@@ -442,7 +446,7 @@ function RegisterScreen ({ navigation }) {
                                 <Switch
                                     value={value}
                                     onBlur={onBlur}
-                                    trackColor={{ false: '#767577', true: 'green' }}
+                                    trackColor={{  true: 'green', false: '#767577' }}
                                     ios_backgroundColor="#3e3e3e"
                                     onValueChange={value => onChange(value)}
                                 />
