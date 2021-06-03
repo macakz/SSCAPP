@@ -44,14 +44,9 @@ const styles = StyleSheet.create({
         textAlignVertical: "top"
     },
     pickerStyle: {
-        width: 300,
+        width: 320,
         fontSize: 15,
         height: 100,
-    },
-    datePicker: {
-        width: 300,
-        fontSize: 15,
-        height: 300,
     },
     button: {
         alignSelf: 'center',
