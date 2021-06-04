@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer, NavigationHelpersContext } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { isFirebaseAppExisted, initializeFirebase, auth } from './firebase'
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -11,15 +11,6 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import LoginScreen from './screen/LoginScreen'
 import RegisterScreen from './screen/RegisterScreen'
 import WelcomeScreen from './screen/WelcomeScreen'
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 
 const AppStack = createStackNavigator()
