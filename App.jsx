@@ -78,6 +78,13 @@ export default function App () {
                           color="#000"
                         />
                       ),
+                      headerLeft: () => (
+                        <Button
+                          onPress={() => navigation.replace('Admin')}
+                          title="Admin"
+                          color="#000"
+                        />
+                      ),
                     })}
                   />
                 </>
