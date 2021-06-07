@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
 })
 
 function AdminScreen ({ navigation }) {
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: 'Administration',
+        })
+    })
     return (
         <SafeAreaView  style={styles.container}>
             <Text>testing 123456789</Text>

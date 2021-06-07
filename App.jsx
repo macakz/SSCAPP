@@ -92,7 +92,7 @@ export default function App () {
                     component={AdminScreen}
                     options={{
                       title: 'Admin',
-                      headerShown: false,
+                      headerShown: true,
                     }}
                   />
                 </>
