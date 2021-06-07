@@ -11,7 +11,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import LoginScreen from './screen/LoginScreen'
 import RegisterScreen from './screen/RegisterScreen'
 import WelcomeScreen from './screen/WelcomeScreen'
-
+import AdminScreen from './screen/AdminScreen'
 
 const AppStack = createStackNavigator()
 
@@ -86,6 +86,14 @@ export default function App () {
                         />
                       ),
                     })}
+                  />
+                  <AppStack.Screen
+                    name="Admin"
+                    component={AdminScreen}
+                    options={{
+                      title: 'Admin',
+                      headerShown: false,
+                    }}
                   />
                 </>
               )}
