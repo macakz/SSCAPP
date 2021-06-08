@@ -29,7 +29,7 @@ function AdminScreen ({ navigation }) {
     const signOut = () => {
         auth().signOut()
             .then(
-                () => navigation.replace('Login')
+                () => navigation.navigate('Login')
             )
     }
 

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: 'black',
         padding: 10,
-        width: 300,
+        width: 500,
 
     },
     userInputContaineFocus: {
@@ -32,19 +32,19 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: 'red',
         padding: 10,
-        width: 300,
+        width: 500,
     },
     userInputContainerLarge: {
         borderWidth: 1,
         borderRadius: 10,
         borderColor: 'black',
         padding: 10,
-        width: 300,
+        width: 500,
         height: 200,
         textAlignVertical: "top"
     },
     pickerStyle: {
-        width: 320,
+        width: 520,
         fontSize: 15,
         height: 100,
     },
@@ -62,8 +62,9 @@ const styles = StyleSheet.create({
     buttonText: {
 
     },
-    confirmation: {
-        fontWeight: "bold"
+    consentText: {
+        width: 500,
+        textAlign: 'justify',
     },
     errorText: {
         color: "red"
@@ -81,7 +82,7 @@ function RegisterScreen ({ navigation }) {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Register',
-            
+
         })
     })
 
@@ -364,7 +365,7 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="drugAllergies"
-                        rules={{ required: true, minLength: 4,  }}
+                        rules={{ required: true, minLength: 4, }}
                         defaultValue=""
                     />
                     {errors.drugAllergies?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
@@ -428,20 +429,20 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <>
-                                <Text>
+                                <Text style={styles.consentText}>
                                     Clinical photographs are often taken as part of your medical record.
                                     On occasion these are used for educational, teaching and publication purposes.
                                     In this case your personal details are kept confidential and you will not be identified in any way.
                                     Identifiable photographs e.g. of your face or distinctive marks such as tattoos will only be used
                                     with your express written consent.
                                 </Text>
-                                <Text style={styles.confirmation}>
+                                <Text style={styles.consentText}>
                                     I have read and understood the above statement
                                 </Text>
                                 <Switch
                                     value={value}
                                     onBlur={onBlur}
-                                    trackColor={{  true: 'green', false: '#767577' }}
+                                    trackColor={{ true: 'green', false: '#767577' }}
                                     ios_backgroundColor="#3e3e3e"
                                     onValueChange={value => onChange(value)}
                                 />
