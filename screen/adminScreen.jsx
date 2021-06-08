@@ -9,19 +9,43 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    button: {
+        alignSelf: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: '#eda488',
+        backgroundColor: '#eda488',
+        padding: 9,
+        margin: 4,
+        width: 180,
+    },
+    buttonText: {
+
+    }
 })
 
 function AdminScreen ({ navigation }) {
+    const signOut = () => {
+        auth().signOut()
+            .then(
+                () => navigation.replace('Login')
+            )
+    }
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Administration',
         })
     })
+
+
     return (
-        <SafeAreaView  style={styles.container}>
-            <Text>testing 123456789</Text>
+        <SafeAreaView style={styles.container}>
+            <TouchableOpacity style={styles.button} onPress={signOut}>
+                <Text style={styles.buttonText}>Sign Out</Text>
+            </TouchableOpacity>
         </SafeAreaView>
-        
     )
 }
 

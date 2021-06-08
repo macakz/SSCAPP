@@ -80,7 +80,7 @@ function RegisterScreen ({ navigation }) {
     // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: 'Please fill in your details below',
+            title: 'Register',
             
         })
     })
