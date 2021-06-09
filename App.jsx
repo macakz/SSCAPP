@@ -20,83 +20,66 @@ export default function App () {
     initializeFirebase()
   }
 
-  const [appState, setAppState] = useState({
-    isAuthenticated: false,
-  })
+  // const [appState, setAppState] = useState({
+  //   isAuthenticated: false,
+  // })
 
-  const { isAuthenticated } = appState
+  // const { isAuthenticated } = appState
 
-  useEffect(() => {
-    auth().onAuthStateChanged((user) => {
-      if (user) {
-        setAppState({
-          isAuthenticated: true,
-        })
-      }
-    })
-  })
   return (
     < SafeAreaProvider >
       <PaperProvider>
         <StatusBar style="auto" />
         <NavigationContainer>
           <AppStack.Navigator>
-            {!isAuthenticated &&
-              (
-                <>
-                  <AppStack.Screen
-                    name="Login"
-                    component={LoginScreen}
-                    options={{
-                      title: 'Login',
-                      headerShown: true,
-                    }}
-                  />
-                </>
-              )}
-            {isAuthenticated &&
-              (
-                <>
-                  <AppStack.Screen
-                    name="Welcome"
-                    component={WelcomeScreen}
-                    options={{
-                      title: 'Welcome',
-                      headerShown: false,
-                    }}
-                  />
-                  <AppStack.Screen
-                    name="Register"
-                    component={RegisterScreen}
-                    options={({ navigation }) => ({
-                      title: 'Register',
-                      headerShown: true,
-                      headerRight: () => (
-                        <Button
-                          onPress={() => navigation.replace('Welcome')}
-                          title="Reset Form"
-                          color="#000"
-                        />
-                      ),
-                      headerLeft: () => (
-                        <Button
-                          onPress={() => navigation.navigate('Admin')}
-                          title="Admin"
-                          color="#000"
-                        />
-                      ),
-                    })}
-                  />
-                  <AppStack.Screen
-                    name="Admin"
-                    component={AdminScreen}
-                    options={{
-                      title: 'Admin',
-                      headerShown: true,
-                    }}
-                  />
-                </>
-              )}
+            <>
+              <AppStack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{
+                  title: 'Login',
+                  headerShown: true,
+                }}
+              />
+              <AppStack.Screen
+                name="Welcome"
+                component={WelcomeScreen}
+                options={{
+                  title: 'Welcome',
+                  headerShown: false,
+                }}
+              />
+              <AppStack.Screen
+                name="Register"
+                component={RegisterScreen}
+                options={({ navigation }) => ({
+                  title: 'Register',
+                  headerShown: true,
+                  headerRight: () => (
+                    <Button
+                      onPress={() => navigation.replace('Welcome')}
+                      title="Reset Form"
+                      color="#000"
+                    />
+                  ),
+                  headerLeft: () => (
+                    <Button
+                      onPress={() => navigation.replace('Admin')}
+                      title="Admin"
+                      color="#000"
+                    />
+                  ),
+                })}
+              />
+              <AppStack.Screen
+                name="Admin"
+                component={AdminScreen}
+                options={{
+                  title: 'Admin',
+                  headerShown: true,
+                }}
+              />
+            </>
           </AppStack.Navigator>
         </NavigationContainer>
       </PaperProvider>

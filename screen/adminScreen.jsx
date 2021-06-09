@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
         margin: 4,
         width: 180,
     },
-    buttonText: {
-
-    }
 })
 
 function AdminScreen ({ navigation }) {
     const signOut = () => {
         auth().signOut()
+            .then(
+                () => navigation.replace('Login')
+            )
     }
 
     useLayoutEffect(() => {

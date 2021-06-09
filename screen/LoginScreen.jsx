@@ -1,5 +1,6 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { auth } from '../firebase';
 import { loginAdmin } from './accountHelper'
 
 const styles = StyleSheet.create({
@@ -44,6 +45,15 @@ function LoginScreen ({ navigation }) {
     function signIn () {
         loginAdmin({ email, password })
     }
+
+    useEffect(() => {
+        const unsubscribe = auth().onAuthStateChanged((user) => {
+            if (user) {
+                navigation.replace('Welcome')
+            }
+        })
+        return unsubscribe
+    }, [])
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Skin Specialist Centre Login',
