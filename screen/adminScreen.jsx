@@ -28,9 +28,6 @@ const styles = StyleSheet.create({
 function AdminScreen ({ navigation }) {
     const signOut = () => {
         auth().signOut()
-            .then(
-                () => navigation.navigate('Login')
-            )
     }
 
     useLayoutEffect(() => {

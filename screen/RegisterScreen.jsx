@@ -70,12 +70,15 @@ const styles = StyleSheet.create({
         color: "red"
     },
 
+
 });
 
 function RegisterScreen ({ navigation }) {
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
     const onSubmit = data => db.collection("Patient").add({ data, createdAt: firebase.firestore.Timestamp.now() })
+
+    const selectionColor = '#eda488'
 
     //firebase realtime database below
     // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
@@ -97,7 +100,10 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                onFocus={styles.highlight}
+                                selectionColor={selectionColor}
+                                onFocus={() => {
+
+                                }}
                                 keyboardType='numeric'
                                 placeholder="#"
                                 style={styles.userInputContainer}
@@ -145,6 +151,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
                                 placeholder="John"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
@@ -165,6 +172,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
                                 placeholder="Smith"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
@@ -186,6 +194,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
                                 placeholder="John"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
@@ -206,6 +215,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInputMask
+                                selectionColor={selectionColor}
                                 keyboardType="numeric"
                                 style={styles.userInputContainer}
                                 type={'datetime'}
@@ -233,7 +243,8 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                placeholder="Address"
+                                selectionColor={selectionColor}
+                                placeholder="1 Smith Street, Auckland, 1070, NZ"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -253,6 +264,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
                                 keyboardType='numeric'
                                 placeholder="Phone Number"
                                 style={styles.userInputContainer}
@@ -275,6 +287,8 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
+                                keyboardType='email-address'
                                 placeholder="johnsmith@mail.com"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
@@ -296,7 +310,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-
+                                selectionColor={selectionColor}
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -315,7 +329,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
-                                placeholder="GP Suburb"
+                                selectionColor={selectionColor}
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -334,6 +348,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
                                 multiline={true}
                                 placeholder="Please type none if this does not apply"
                                 style={styles.userInputContainerLarge}
@@ -356,6 +371,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
                                 multiline={true}
                                 placeholder="Please type none if this does not apply"
                                 style={styles.userInputContainerLarge}
@@ -378,6 +394,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
@@ -394,6 +411,7 @@ function RegisterScreen ({ navigation }) {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                selectionColor={selectionColor}
                                 keyboardType='numeric'
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
