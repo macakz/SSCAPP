@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Switch, Button, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, } from 'react-native'
+import { KeyboardAvoidingView, SafeAreaView, Switch, Button, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import { auth } from '../firebase'
 import firebase from 'firebase'
 import { useSelector } from 'react-redux'
@@ -7,6 +7,7 @@ import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import { TextInputMask } from 'react-native-masked-text'
 import 'firebase/firestore'
+import { set } from 'react-native-reanimated'
 
 const styles = StyleSheet.create({
     container: {
@@ -79,9 +80,16 @@ const styles = StyleSheet.create({
 function RegisterScreen ({ navigation }) {
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
-    const onSubmit = data => db.collection("Patient").add({ data, createdAt: firebase.firestore.Timestamp.now() })
+    const onSubmit = data =>
+    
+        db.collection("Patient")
+            .add({ data, createdAt: firebase.firestore.Timestamp.now() })
+            .finally(() => {
+                setLoading(false)
+            })
 
     const selectionColor = '#eda488'
+    const [loading, setLoading] = useState(false)
 
     //firebase realtime database below
     // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
@@ -91,6 +99,7 @@ function RegisterScreen ({ navigation }) {
 
         })
     })
+
 
     return (
         <ScrollView >
@@ -478,9 +487,10 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-                    <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+                    <TouchableOpacity style={styles.button} onPressIn={()=> {setLoading(true)}} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
+                    <ActivityIndicator color="green" size="large" animating={loading} />
                 </SafeAreaView>
 
             </KeyboardAvoidingView >

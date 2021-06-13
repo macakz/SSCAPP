@@ -50,6 +50,7 @@ function LoginScreen ({ navigation }) {
         const unsubscribe = auth().onAuthStateChanged((user) => {
             if (user) {
                 navigation.replace('Welcome')
+                // console.log(user)
             }
         })
         return unsubscribe
