@@ -74,10 +74,17 @@ export default function App () {
               <AppStack.Screen
                 name="Admin"
                 component={AdminScreen}
-                options={{
-                  title: 'Admin',
+                options={({ navigation }) => ({
+                  title: 'Register',
                   headerShown: true,
-                }}
+                  headerLeft: () => (
+                    <Button
+                      onPress={() => navigation.replace('Welcome')}
+                      title="Register"
+                      color="#000"
+                    />
+                  ),
+                })}
               />
             </>
           </AppStack.Navigator>

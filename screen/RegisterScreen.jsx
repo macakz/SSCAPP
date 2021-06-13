@@ -15,22 +15,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    logo: {
-        alignSelf: 'center',
-        margin: 50,
-    },
     userInputContainer: {
         borderWidth: 1,
         borderRadius: 10,
         borderColor: 'black',
-        padding: 10,
-        width: 500,
-
-    },
-    userInputContaineFocus: {
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: 'red',
         padding: 10,
         width: 500,
     },
@@ -63,12 +51,20 @@ const styles = StyleSheet.create({
 
     },
     consentText: {
+        padding: 10,
         width: 500,
         textAlign: 'justify',
+    },
+    consentTextAgree: {
+        padding: 10,
+        textAlign: 'center',
     },
     errorText: {
         color: "red"
     },
+    required: {
+        color: "red"
+    }
 
 
 });
@@ -94,6 +90,9 @@ function RegisterScreen ({ navigation }) {
             <KeyboardAvoidingView>
                 <SafeAreaView style={styles.container}>
                     <Text>
+                        Please fill in your details below, anything marked <Text style={styles.required}>*</Text> is required.
+                    </Text>
+                    <Text>
                         National Health Index:
                     </Text>
                     <Controller
@@ -118,7 +117,7 @@ function RegisterScreen ({ navigation }) {
                     />
                     {/* {errors.nationalHealthIndex && <Text style={styles.errorText}>This is required.</Text>} */}
                     <Text>
-                        Title:
+                        <Text style={styles.required}>*</Text>Title:
                     </Text>
                     <Controller
                         control={control}
@@ -145,7 +144,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.title && <Text style={styles.errorText}>This is required.</Text>}
 
                     <Text>
-                        First Name:
+                        <Text style={styles.required}>*</Text>First Name:
                     </Text>
                     <Controller
                         control={control}
@@ -166,7 +165,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.firstName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
                     <Text>
-                        Last Name:
+                        <Text style={styles.required}>*</Text>Last Name:
                     </Text>
                     <Controller
                         control={control}
@@ -188,7 +187,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.lastName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
 
                     <Text>
-                        Preferred Name:
+                        <Text style={styles.required}>*</Text>Preferred Name:
                     </Text>
                     <Controller
                         control={control}
@@ -208,8 +207,8 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.preferredName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.preferredName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
-                    <Text>
-                        Date of Birth:
+                    <Text style={styles.controllerTitle}>
+                        <Text style={styles.required}>*</Text>Date of Birth:
                     </Text>
                     <Controller
                         control={control}
@@ -237,7 +236,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.dateOfBirth?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
 
                     <Text>
-                        Address:
+                        <Text style={styles.required}>*</Text>Address:
                     </Text>
                     <Controller
                         control={control}
@@ -258,7 +257,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.address?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                     <Text>
-                        Phone Number:
+                        <Text style={styles.required}>*</Text>Phone Number:
                     </Text>
                     <Controller
                         control={control}
@@ -281,12 +280,13 @@ function RegisterScreen ({ navigation }) {
                     {errors.phone?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid phone number.</Text>}
 
                     <Text>
-                        Email:
+                        <Text style={styles.required}>*</Text>Email:
                     </Text>
                     <Controller
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
+                                autoCapitalize="none"
                                 selectionColor={selectionColor}
                                 keyboardType='email-address'
                                 placeholder="johnsmith@mail.com"
@@ -304,7 +304,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.email?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid email.</Text>}
 
                     <Text>
-                        GP Name:
+                        <Text style={styles.required}>*</Text>GP Name:
                     </Text>
                     <Controller
                         control={control}
@@ -323,7 +323,7 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.gpName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Text>
-                        GP Suburb:
+                        <Text style={styles.required}>*</Text>GP Suburb:
                     </Text>
                     <Controller
                         control={control}
@@ -342,7 +342,7 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.gpSuburb?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     <Text>
-                        Current Medications (Please include any supplements):
+                        C<Text style={styles.required}>*</Text>urrent Medications (Please include any supplements):
                     </Text>
                     <Controller
                         control={control}
@@ -365,7 +365,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.currentMedication?.type === "minLength" && <Text style={styles.errorText}>Please state your current medications, or type none.</Text>}
 
                     <Text>
-                        Drug Allergies (Name of medication and description of reaction):
+                        <Text style={styles.required}>*</Text>Drug Allergies (Name of medication and description of reaction):
                     </Text>
                     <Controller
                         control={control}
@@ -428,7 +428,7 @@ function RegisterScreen ({ navigation }) {
                         render={({ field: { onChange, onBlur, value } }) => (
                             <>
                                 <Text>
-                                    Are you a NZ resident?
+                                    <Text style={styles.required}>*</Text>Are you a NZ resident?
                                 </Text>
                                 <Switch
                                     value={value}
@@ -454,8 +454,8 @@ function RegisterScreen ({ navigation }) {
                                     Identifiable photographs e.g. of your face or distinctive marks such as tattoos will only be used
                                     with your express written consent.
                                 </Text>
-                                <Text style={styles.consentText}>
-                                    I have read and understood the above statement
+                                <Text style={styles.consentTextAgree}>
+                                    <Text style={styles.required}>*</Text>I have read and understood the above statement
                                 </Text>
                                 <Switch
                                     value={value}
