@@ -20,12 +20,6 @@ export default function App () {
     initializeFirebase()
   }
 
-  // const [appState, setAppState] = useState({
-  //   isAuthenticated: false,
-  // })
-
-  // const { isAuthenticated } = appState
-
   return (
     < SafeAreaProvider >
       <PaperProvider>

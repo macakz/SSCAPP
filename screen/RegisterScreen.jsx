@@ -64,8 +64,15 @@ const styles = StyleSheet.create({
     },
     required: {
         color: "red"
-    }
+    },
+    controllerTitle: {
+        padding: 10,
 
+
+    },
+    instruction: {
+
+    },
 
 });
 
@@ -89,10 +96,10 @@ function RegisterScreen ({ navigation }) {
         <ScrollView >
             <KeyboardAvoidingView>
                 <SafeAreaView style={styles.container}>
-                    <Text>
+                    <Text style={styles.instruction}>
                         Please fill in your details below, anything marked <Text style={styles.required}>*</Text> is required.
                     </Text>
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         National Health Index:
                     </Text>
                     <Controller
@@ -116,7 +123,7 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {/* {errors.nationalHealthIndex && <Text style={styles.errorText}>This is required.</Text>} */}
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>Title:
                     </Text>
                     <Controller
@@ -143,7 +150,7 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.title && <Text style={styles.errorText}>This is required.</Text>}
 
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>First Name:
                     </Text>
                     <Controller
@@ -164,7 +171,7 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.firstName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>Last Name:
                     </Text>
                     <Controller
@@ -186,7 +193,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.lastName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
 
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>Preferred Name:
                     </Text>
                     <Controller
@@ -235,7 +242,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.dateOfBirth?.type === "minLength" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
                     {errors.dateOfBirth?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
 
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>Address:
                     </Text>
                     <Controller
@@ -256,7 +263,7 @@ function RegisterScreen ({ navigation }) {
                     />
                     {errors.address?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>Phone Number:
                     </Text>
                     <Controller
@@ -279,7 +286,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.phone?.type === "required" && <Text style={styles.errorText} t>This is required.</Text>}
                     {errors.phone?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid phone number.</Text>}
 
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>Email:
                     </Text>
                     <Controller
@@ -303,7 +310,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.email?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.email?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid email.</Text>}
 
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>GP Name:
                     </Text>
                     <Controller
@@ -322,7 +329,7 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.gpName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>GP Suburb:
                     </Text>
                     <Controller
@@ -341,8 +348,8 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.gpSuburb?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-                    <Text>
-                        C<Text style={styles.required}>*</Text>urrent Medications (Please include any supplements):
+                    <Text style={styles.controllerTitle}>
+                        <Text style={styles.required}>*</Text>Current Medications (Please include any supplements):
                     </Text>
                     <Controller
                         control={control}
@@ -364,7 +371,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.currentMedication?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.currentMedication?.type === "minLength" && <Text style={styles.errorText}>Please state your current medications, or type none.</Text>}
 
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>Drug Allergies (Name of medication and description of reaction):
                     </Text>
                     <Controller
@@ -387,7 +394,7 @@ function RegisterScreen ({ navigation }) {
                     {errors.drugAllergies?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.drugAllergies?.type === "minLength" && <Text style={styles.errorText}>Please state your drug allergies, or type none.</Text>}
 
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         Insurance Company:
                     </Text>
                     <Controller
@@ -404,7 +411,7 @@ function RegisterScreen ({ navigation }) {
                         name="insuranceCompany"
                         defaultValue=""
                     />
-                    <Text>
+                    <Text style={styles.controllerTitle}>
                         Membership Number:
                     </Text>
                     <Controller
