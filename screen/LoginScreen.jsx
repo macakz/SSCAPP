@@ -41,6 +41,7 @@ function LoginScreen ({ navigation }) {
                 <TextInput
                     style={styles.inputContainer}
                     placeholder="E-mail"
+                    keyboardType="email-address"
                     autoCapitalize="none"
                     type="email"
                     value={email}

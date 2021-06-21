@@ -46,7 +46,6 @@ function RegisterScreen ({ navigation }) {
                                 onFocus={() => {
 
                                 }}
-                                keyboardType='numeric'
                                 placeholder="#"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
