@@ -1,8 +1,6 @@
-import React, { useState, useLayoutEffect } from 'react'
-import firebase from 'firebase'
-import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, View, Button, StyleSheet, Text, TouchableOpacity, Image, TextInput, } from 'react-native'
+import React from 'react'
+import { KeyboardAvoidingView, SafeAreaView, Text, TouchableOpacity, Image,  } from 'react-native'
 import styles from './welcomeScreenStyle.js';
-
 
 function WelcomeScreen ({ navigation }) {
     return (
