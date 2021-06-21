@@ -5,8 +5,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        
     },
     userInputContainer: {
         borderWidth: 1,
@@ -28,6 +27,8 @@ export default StyleSheet.create({
         width: 520,
         fontSize: 15,
         height: 100,
+        marginLeft: -8,
+
     },
     button: {
         alignSelf: 'center',
@@ -60,11 +61,10 @@ export default StyleSheet.create({
     },
     controllerTitle: {
         padding: 10,
-
-
     },
     instruction: {
-
+        paddingTop: 20,
+        paddingBottom:10,
     },
 
 });

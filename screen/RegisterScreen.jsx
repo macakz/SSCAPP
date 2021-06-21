@@ -11,9 +11,9 @@ import styles from './registerScreenStyle.js';
 function RegisterScreen ({ navigation }) {
     const selectionColor = '#eda488'
     const [loading, setLoading] = useState(false)
-    
+
     const { control, handleSubmit, formState: { errors } } = useForm();
-    
+
     const db = firebase.firestore()
     const onSubmit = data =>
         db.collection("Patient")
@@ -43,9 +43,6 @@ function RegisterScreen ({ navigation }) {
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 selectionColor={selectionColor}
-                                onFocus={() => {
-
-                                }}
                                 placeholder="#"
                                 style={styles.userInputContainer}
                                 onBlur={onBlur}
@@ -57,7 +54,7 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     <Text style={styles.controllerTitle}>
-                        <Text style={styles.required}>*</Text>Title:
+                        Title<Text style={styles.required}>*</Text>:
                     </Text>
                     <Controller
                         control={control}
