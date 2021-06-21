@@ -9,27 +9,24 @@ import styles from './registerScreenStyle.js';
 
 
 function RegisterScreen ({ navigation }) {
+    const selectionColor = '#eda488'
+    const [loading, setLoading] = useState(false)
+    
     const { control, handleSubmit, formState: { errors } } = useForm();
+    
     const db = firebase.firestore()
     const onSubmit = data =>
-    
-    
         db.collection("Patient")
             .add({ data, createdAt: firebase.firestore.Timestamp.now() })
             .then(() => {
                 setLoading(false)
             })
 
-    const selectionColor = '#eda488'
-    const [loading, setLoading] = useState(false)
-
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Register',
-
         })
     })
-
 
     return (
         <ScrollView >
@@ -58,10 +55,8 @@ function RegisterScreen ({ navigation }) {
                             />
                         )}
                         name="nationalHealthIndex"
-                        // rules={{ required: true }}
                         defaultValue=""
                     />
-                    {/* {errors.nationalHealthIndex && <Text style={styles.errorText}>This is required.</Text>} */}
                     <Text style={styles.controllerTitle}>
                         <Text style={styles.required}>*</Text>Title:
                     </Text>
@@ -417,7 +412,7 @@ function RegisterScreen ({ navigation }) {
                         defaultValue=""
                     />
                     {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-                    <TouchableOpacity style={styles.button} onPressIn={()=> {setLoading(true)}} onPress={handleSubmit(onSubmit)}>
+                    <TouchableOpacity style={styles.button} onPressIn={() => { setLoading(true) }} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
                     <ActivityIndicator color="green" size="large" animating={loading} />
