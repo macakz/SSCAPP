@@ -1,13 +1,10 @@
 import React, { useState, useLayoutEffect } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Switch, Button, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
-import { auth } from '../firebase'
+import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import firebase from 'firebase'
-import { useSelector } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import { TextInputMask } from 'react-native-masked-text'
 import 'firebase/firestore'
-import { set } from 'react-native-reanimated'
 
 const styles = StyleSheet.create({
     container: {
@@ -91,8 +88,6 @@ function RegisterScreen ({ navigation }) {
     const selectionColor = '#eda488'
     const [loading, setLoading] = useState(false)
 
-    //firebase realtime database below
-    // const onSubmit = data => firebase.database().ref(currentDate).child("Patient:" + currentTime).set(data)
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Register',
@@ -492,7 +487,6 @@ function RegisterScreen ({ navigation }) {
                     </TouchableOpacity>
                     <ActivityIndicator color="green" size="large" animating={loading} />
                 </SafeAreaView>
-
             </KeyboardAvoidingView >
         </ScrollView >
     );
