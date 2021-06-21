@@ -32,7 +32,7 @@ export default function App () {
                 component={LoginScreen}
                 options={{
                   title: 'Login',
-                  headerShown: true,
+                  headerShown: false,
                 }}
               />
               <AppStack.Screen
