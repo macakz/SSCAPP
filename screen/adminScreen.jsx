@@ -1,5 +1,5 @@
-import React, { useState, useLayoutEffect } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Switch, Button, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, } from 'react-native'
+import React, {  useLayoutEffect } from 'react'
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, } from 'react-native'
 import { auth } from '../firebase'
 
 const styles = StyleSheet.create({
