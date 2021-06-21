@@ -21,7 +21,7 @@ export default function App () {
   }
 
   return (
-    < SafeAreaProvider >
+    <SafeAreaProvider>
       <PaperProvider>
         <StatusBar style="auto" />
         <NavigationContainer>

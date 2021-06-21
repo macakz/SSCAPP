@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Switch, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import { KeyboardAvoidingView, SafeAreaView, View, Switch, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import firebase from 'firebase'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
@@ -29,9 +29,9 @@ function RegisterScreen ({ navigation }) {
     })
 
     return (
-        <ScrollView >
-            <KeyboardAvoidingView>
-                <SafeAreaView style={styles.container}>
+        <KeyboardAvoidingView>
+            <ScrollView bounces={false} >
+                <View style={styles.container}>
                     <Text style={styles.instruction}>
                         Please fill in your details below, anything marked <Text style={styles.required}>*</Text> is required.
                     </Text>
@@ -412,9 +412,9 @@ function RegisterScreen ({ navigation }) {
                         <Text>Submit</Text>
                     </TouchableOpacity>
                     <ActivityIndicator color="green" size="large" animating={loading} />
-                </SafeAreaView>
-            </KeyboardAvoidingView >
-        </ScrollView >
+                </View>
+            </ScrollView >
+        </KeyboardAvoidingView >
     );
 }
 
