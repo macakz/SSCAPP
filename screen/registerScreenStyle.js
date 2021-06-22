@@ -1,11 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-
 export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        
+
     },
     userInputContainer: {
         borderWidth: 1,
@@ -64,7 +63,7 @@ export default StyleSheet.create({
     },
     instruction: {
         paddingTop: 20,
-        paddingBottom:10,
+        paddingBottom: 10,
     },
 
 });

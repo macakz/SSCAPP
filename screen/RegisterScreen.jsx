@@ -1,9 +1,10 @@
 import React, { useState, useLayoutEffect } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, View, Switch, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import { KeyboardAvoidingView, SafeAreaView, View, Switch, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator, } from 'react-native'
 import firebase from 'firebase'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import { TextInputMask } from 'react-native-masked-text'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import 'firebase/firestore'
 import styles from './registerScreenStyle.js';
 
@@ -29,8 +30,7 @@ function RegisterScreen ({ navigation }) {
     })
 
     return (
-        <KeyboardAvoidingView>
-            <ScrollView bounces={false} >
+        <KeyboardAwareScrollView>
                 <View style={styles.container}>
                     <Text style={styles.instruction}>
                         Please fill in your details below, anything marked <Text style={styles.required}>*</Text> is required.
@@ -413,8 +413,7 @@ function RegisterScreen ({ navigation }) {
                     </TouchableOpacity>
                     <ActivityIndicator color="green" size="large" animating={loading} />
                 </View>
-            </ScrollView >
-        </KeyboardAvoidingView >
+                </KeyboardAwareScrollView>
     );
 }
 
