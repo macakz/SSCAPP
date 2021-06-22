@@ -20,6 +20,7 @@ function LoginScreen ({ navigation }) {
             if (user) {
                 navigation.replace('Welcome')
             }
+            
         })
         return unsubscribe
     }, [])
