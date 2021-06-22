@@ -6,6 +6,7 @@ import { Picker } from '@react-native-picker/picker'
 import { TextInputMask } from 'react-native-masked-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import 'firebase/firestore'
+//Style
 import styles from './registerScreenStyle.js';
 
 

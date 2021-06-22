@@ -52,13 +52,17 @@ export default function App () {
                 component={RegisterScreen}
                 options={({ navigation }) => ({
                   title: 'Register',
+                  headerTitleStyle: {
+                    fontSize: 20,
+                    fontWeight: 'normal'
+                  },
                   headerShown: true,
                   headerRight: () => (
                     <TouchableOpacity onPress={() => navigation.replace('Welcome')}>
                       <View>
                         <Text style={styles.headerSubText}>
                           <AntDesign name="retweet" size={20} color="black" />
-                          {' '}Reset 
+                          {' '}Reset
                         </Text>
                       </View>
                     </TouchableOpacity>

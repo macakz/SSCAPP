@@ -2,8 +2,10 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { auth } from '../firebase';
 import { loginAdmin } from './accountHelper'
-import styles from './loginScreenStyle.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+//Style
+import styles from './loginScreenStyle.js';
+
 
 function LoginScreen ({ navigation }) {
     const [email, setEmail] = useState('')
