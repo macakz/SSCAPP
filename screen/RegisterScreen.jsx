@@ -1,12 +1,16 @@
+//tools
 import React, { useState, useLayoutEffect } from 'react'
 import { View, Switch, Text, TouchableOpacity, TextInput, ActivityIndicator, } from 'react-native'
-import firebase from 'firebase'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import { TextInputMask } from 'react-native-masked-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+//firebase
 import 'firebase/firestore'
-//Style
+import firebase from 'firebase'
+
+//style
 import styles from './registerScreenStyle.js';
 
 

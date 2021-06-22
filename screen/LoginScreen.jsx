@@ -1,8 +1,14 @@
+//tools
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
-import { auth } from '../firebase';
-import { loginAdmin } from './accountHelper'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+//components
+import { loginAdmin } from './accountHelper'
+
+//firebase
+import { auth } from '../firebase';
+
 //Style
 import styles from './loginScreenStyle.js';
 
@@ -24,6 +30,7 @@ function LoginScreen ({ navigation }) {
         })
         return unsubscribe
     }, [])
+    
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Skin Specialist Centre Login',

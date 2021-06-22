@@ -1,5 +1,8 @@
+//tools
 import React from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity, Image,  } from 'react-native'
+
+//Style
 import styles from './welcomeScreenStyle.js';
 
 function WelcomeScreen ({ navigation }) {

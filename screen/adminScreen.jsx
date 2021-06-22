@@ -1,6 +1,11 @@
+//tools
 import React, {  useLayoutEffect } from 'react'
 import { View, Text, TouchableOpacity, } from 'react-native'
+
+//firebase
 import { auth } from '../firebase'
+
+//style
 import styles from './adminScreenStyle.js';
 
 
