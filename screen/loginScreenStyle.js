@@ -2,22 +2,25 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     container: {
+        paddingTop: 200,
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
     },
     logo: {
         alignSelf: 'center',
         margin: 50,
     },
     inputContainer: {
+        alignItems: 'center',
+    },
+    input: {
         borderWidth: 1,
         borderRadius: 10,
         borderColor: 'black',
         padding: 10,
+        marginBottom: 5,
         width: 300,
-
     },
     button: {
         alignSelf: 'center',

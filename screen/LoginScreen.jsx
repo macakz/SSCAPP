@@ -34,14 +34,14 @@ function LoginScreen ({ navigation }) {
     }, [navigation])
 
     return (
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView contentContainerStyle={styles.container}>
             <Image
                 style={styles.logo}
                 source={require('../assets/logo.png')}
             />
-            <SafeAreaView>
+            <SafeAreaView style={styles.inputContainer}>
                 <TextInput
-                    style={styles.inputContainer}
+                    style={styles.input}
                     placeholder="E-mail"
                     keyboardType="email-address"
                     autoCapitalize="none"
@@ -50,7 +50,7 @@ function LoginScreen ({ navigation }) {
                     onChangeText={(text) => setEmail(text)}
                 />
                 <TextInput
-                    style={styles.inputContainer}
+                    style={styles.input}
                     placeholder="Password"
                     type="password"
                     secureTextEntry
