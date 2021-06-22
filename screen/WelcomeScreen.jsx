@@ -1,10 +1,10 @@
 import React from 'react'
-import { KeyboardAvoidingView, SafeAreaView, Text, TouchableOpacity, Image,  } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, Image,  } from 'react-native'
 import styles from './welcomeScreenStyle.js';
 
 function WelcomeScreen ({ navigation }) {
     return (
-        <KeyboardAvoidingView style={styles.container}>
+        <View style={styles.container}>
             <Image
                 style={styles.logo}
                 source={require('../assets/logo.png')}
@@ -14,7 +14,7 @@ function WelcomeScreen ({ navigation }) {
                     <Text>Register</Text>
                 </TouchableOpacity>
             </SafeAreaView>
-        </KeyboardAvoidingView>
+        </View>
 
     )
 }
