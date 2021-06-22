@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, View, Switch, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator, } from 'react-native'
+import {View, Switch, Text, TouchableOpacity, TextInput, ActivityIndicator, } from 'react-native'
 import firebase from 'firebase'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
