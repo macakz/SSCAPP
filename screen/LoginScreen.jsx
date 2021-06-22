@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { auth } from '../firebase';
 import { loginAdmin } from './accountHelper'
 import styles from './loginScreenStyle.js';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 function LoginScreen ({ navigation }) {
     const [email, setEmail] = useState('')
@@ -16,7 +17,6 @@ function LoginScreen ({ navigation }) {
         const unsubscribe = auth().onAuthStateChanged((user) => {
             if (user) {
                 navigation.replace('Welcome')
-                // console.log(user)
             }
         })
         return unsubscribe
@@ -32,7 +32,7 @@ function LoginScreen ({ navigation }) {
     }, [navigation])
 
     return (
-        <KeyboardAvoidingView style={styles.container}>
+        <KeyboardAwareScrollView>
             <Image
                 style={styles.logo}
                 source={require('../assets/logo.png')}
@@ -59,7 +59,7 @@ function LoginScreen ({ navigation }) {
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
             </SafeAreaView>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
     );
 }
 
