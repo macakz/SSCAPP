@@ -26,11 +26,11 @@ function LoginScreen ({ navigation }) {
             if (user) {
                 navigation.replace('Welcome')
             }
-            
+
         })
         return unsubscribe
     }, [])
-    
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Skin Specialist Centre Login',

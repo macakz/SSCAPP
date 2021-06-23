@@ -27,11 +27,12 @@ function RegisterScreen ({ navigation }) {
     const { control, handleSubmit, formState: { errors } } = useForm();
 
     const db = firebase.firestore()
-    const onSubmit = data =>
+    
+    const onSubmit = (data) => {
         db.collection("Patient")
             .add({ data, createdAt: firebase.firestore.Timestamp.now() })
-            
-
+            .then(() => { navigation.replace('Welcome') })
+    }
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Register',
@@ -417,7 +418,7 @@ function RegisterScreen ({ navigation }) {
                     defaultValue=""
                 />
                 {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-                <TouchableOpacity style={styles.button} onPressIn={() =>  {loadingHandler()} } onPress={handleSubmit(onSubmit)}>
+                <TouchableOpacity style={styles.button} onPressIn={() => loadingHandler()} onPress={handleSubmit(onSubmit)}>
                     <Text>Submit</Text>
                 </TouchableOpacity>
                 <ActivityIndicator color="green" size="large" animating={loading} />
