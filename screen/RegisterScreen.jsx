@@ -27,7 +27,7 @@ function RegisterScreen ({ navigation }) {
     const { control, handleSubmit, formState: { errors } } = useForm();
 
     const db = firebase.firestore()
-    
+
     const onSubmit = (data) => {
         db.collection("Patient")
             .add({ data, createdAt: firebase.firestore.Timestamp.now() })
@@ -45,8 +45,11 @@ function RegisterScreen ({ navigation }) {
                 <Text style={styles.instruction}>
                     Please fill in your details below, anything marked <Text style={styles.required}>*</Text> is required.
                 </Text>
+
+                {/* identity details */}
+
                 <Text style={styles.controllerTitle}>
-                    National Health Index:
+                    {" "}National Health Index:
                 </Text>
                 <Controller
                     control={control}
@@ -64,7 +67,7 @@ function RegisterScreen ({ navigation }) {
                     defaultValue=""
                 />
                 <Text style={styles.controllerTitle}>
-                    Title<Text style={styles.required}>*</Text>:
+                    <Text style={styles.required}>*</Text>Title:
                 </Text>
                 <Controller
                     control={control}
@@ -182,6 +185,8 @@ function RegisterScreen ({ navigation }) {
                 {errors.dateOfBirth?.type === "minLength" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
                 {errors.dateOfBirth?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
 
+                {/* contact details */}
+
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Address:
                 </Text>
@@ -250,6 +255,8 @@ function RegisterScreen ({ navigation }) {
                 {errors.email?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.email?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid email.</Text>}
 
+                {/* GP details */}
+
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>GP Name:
                 </Text>
@@ -288,6 +295,9 @@ function RegisterScreen ({ navigation }) {
                     defaultValue=""
                 />
                 {errors.gpSuburb?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+
+                {/* medication / allergies  details*/}
+
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Current Medications (Please include any supplements):
                 </Text>
@@ -334,8 +344,10 @@ function RegisterScreen ({ navigation }) {
                 {errors.drugAllergies?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.drugAllergies?.type === "minLength" && <Text style={styles.errorText}>Please state your drug allergies, or type none.</Text>}
 
+                {/* insurance details */}
+
                 <Text style={styles.controllerTitle}>
-                    Insurance Company:
+                    {" "}Insurance Company:
                 </Text>
                 <Controller
                     control={control}
@@ -352,7 +364,7 @@ function RegisterScreen ({ navigation }) {
                     defaultValue=""
                 />
                 <Text style={styles.controllerTitle}>
-                    Membership Number:
+                    {" "}Membership Number:
                 </Text>
                 <Controller
                     control={control}
