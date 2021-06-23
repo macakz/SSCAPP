@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
+    formContainer: {
         backgroundColor: '#fff',
-
+        paddingLeft: 100,
     },
     userInputContainer: {
         borderWidth: 1,
@@ -56,14 +55,18 @@ export default StyleSheet.create({
         color: "red"
     },
     required: {
-        color: "red"
+        color: "red",
     },
     controllerTitle: {
         padding: 10,
     },
     instruction: {
         paddingTop: 20,
-        paddingBottom: 10,
+        paddingBottom: 20,
+        textAlign: "center",
     },
+    switch: {
+        padding: 10,
+    }
 
 });

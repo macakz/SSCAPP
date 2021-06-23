@@ -41,11 +41,10 @@ function RegisterScreen ({ navigation }) {
 
     return (
         <KeyboardAwareScrollView>
-            <View style={styles.container}>
-                <Text style={styles.instruction}>
-                    Please fill in your details below, anything marked <Text style={styles.required}>*</Text> is required.
-                </Text>
-
+            <Text style={styles.instruction}>
+                Please fill in your details below, anything marked <Text style={styles.required}>*</Text> is required.
+            </Text>
+            <View style={styles.formContainer}>
                 {/* identity details */}
 
                 <Text style={styles.controllerTitle}>
@@ -386,16 +385,19 @@ function RegisterScreen ({ navigation }) {
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
                         <>
-                            <Text>
+                            <Text style={styles.controllerTitle}>
                                 <Text style={styles.required}>*</Text>Are you a NZ resident?
                             </Text>
-                            <Switch
-                                value={value}
-                                onBlur={onBlur}
-                                trackColor={{ false: '#767577', true: 'green' }}
-                                ios_backgroundColor="#3e3e3e"
-                                onValueChange={value => onChange(value)}
-                            />
+                            <View style={styles.switch}>
+                                <Switch
+                                    value={value}
+                                    onBlur={onBlur}
+                                    trackColor={{ false: '#767577', true: 'green' }}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={value => onChange(value)}
+                                />
+                            </View>
+
                         </>
                     )}
                     name="nzResident"
@@ -416,13 +418,15 @@ function RegisterScreen ({ navigation }) {
                             <Text style={styles.consentTextAgree}>
                                 <Text style={styles.required}>*</Text>I have read and understood the above statement
                             </Text>
-                            <Switch
-                                value={value}
-                                onBlur={onBlur}
-                                trackColor={{ true: 'green', false: '#767577' }}
-                                ios_backgroundColor="#3e3e3e"
-                                onValueChange={value => onChange(value)}
-                            />
+                            <View style={styles.switch}>
+                                <Switch
+                                    value={value}
+                                    onBlur={onBlur}
+                                    trackColor={{ true: 'green', false: '#767577' }}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={value => onChange(value)}
+                                />
+                            </View>
                         </>
                     )}
                     name="consent"
