@@ -19,6 +19,17 @@ import styles from './appStyle.js';
 
 const AppStack = createStackNavigator()
 
+const transitionConfig = {
+  animation: 'spring',
+  config: {
+    stiffness: 150,
+    damping: 500,
+    mass: 3,
+    overshootClamping: false,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
 export default function App () {
   if (!isFirebaseAppExisted()) {
     initializeFirebase()
@@ -45,6 +56,10 @@ export default function App () {
                 options={{
                   title: 'Welcome',
                   headerShown: false,
+                  transitionSpec: {
+                    open: transitionConfig,
+                    close: transitionConfig,
+                  },
                 }}
               />
               <AppStack.Screen
@@ -52,6 +67,10 @@ export default function App () {
                 component={RegisterScreen}
                 options={({ navigation }) => ({
                   title: 'Register',
+                  transitionSpec: {
+                    open: transitionConfig,
+                    close: transitionConfig,
+                  },
                   headerTitleStyle: {
                     fontSize: 20,
                     fontWeight: 'normal'

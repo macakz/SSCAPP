@@ -58,7 +58,9 @@ export default StyleSheet.create({
         color: "red",
     },
     controllerTitle: {
-        padding: 10,
+    paddingLeft: 3,
+    paddingBottom: 10,
+    paddingTop: 10,
     },
     instruction: {
         paddingTop: 20,
