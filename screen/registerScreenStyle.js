@@ -26,7 +26,9 @@ export default StyleSheet.create({
         fontSize: 15,
         height: 100,
         marginLeft: -8,
-
+    },
+    buttonContainer: {
+        width: 500,
     },
     button: {
         alignSelf: 'center',
@@ -35,8 +37,8 @@ export default StyleSheet.create({
         borderRadius: 10,
         borderColor: '#eda488',
         backgroundColor: '#eda488',
-        padding: 9,
-        margin: 4,
+        margin: 10,
+        padding: 10,
         width: 180,
     },
     buttonText: {
@@ -46,9 +48,24 @@ export default StyleSheet.create({
         padding: 10,
         width: 500,
         textAlign: 'justify',
+        borderWidth: 3,
+        borderRadius: 10,
+        borderColor: '#eda488',
+
     },
-    consentTextAgree: {
+    consentContainer: {
+        marginTop: 10,
         padding: 10,
+        width: 500,
+        textAlign: 'center',
+        borderWidth: 3,
+        borderRadius: 10,
+        borderColor: '#eda488',
+
+    },
+    understood: {
+        fontSize: 15,
+        paddingTop: 10,
         textAlign: 'center',
     },
     errorText: {
@@ -58,9 +75,9 @@ export default StyleSheet.create({
         color: "red",
     },
     controllerTitle: {
-    paddingLeft: 3,
-    paddingBottom: 10,
-    paddingTop: 10,
+        paddingLeft: 3,
+        paddingBottom: 10,
+        paddingTop: 10,
     },
     instruction: {
         paddingTop: 20,
@@ -69,6 +86,11 @@ export default StyleSheet.create({
     },
     switch: {
         padding: 10,
-    }
+
+    },
+    switchConsent: {
+        padding: 10,
+        alignItems: 'center',
+    },
 
 });

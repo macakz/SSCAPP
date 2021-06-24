@@ -12,11 +12,13 @@ import firebase from 'firebase'
 
 //style
 import styles from './registerScreenStyle.js';
+import { set } from 'react-native-reanimated'
 
 
 function RegisterScreen ({ navigation }) {
     const selectionColor = '#eda488'
     const [loading, setLoading] = useState(false)
+    const [nzValue, setNzValue] = useState(false)
 
     const loadingHandler = () => {
         setLoading(true);
@@ -394,10 +396,11 @@ function RegisterScreen ({ navigation }) {
                                     onBlur={onBlur}
                                     trackColor={{ false: '#767577', true: 'green' }}
                                     ios_backgroundColor="#3e3e3e"
-                                    onValueChange={value => onChange(value)}
-                                />
-                            </View>
+                                    onValueChange={value => onChange(value) + setNzValue(value)}
 
+                                />
+                                <Text>{nzValue.toString()}</Text>
+                            </View>
                         </>
                     )}
                     name="nzResident"
@@ -415,28 +418,36 @@ function RegisterScreen ({ navigation }) {
                                 Identifiable photographs e.g. of your face or distinctive marks such as tattoos will only be used
                                 with your express written consent.
                             </Text>
-                            <Text style={styles.consentTextAgree}>
-                                <Text style={styles.required}>*</Text>I have read and understood the above statement
-                            </Text>
-                            <View style={styles.switch}>
-                                <Switch
-                                    value={value}
-                                    onBlur={onBlur}
-                                    trackColor={{ true: 'green', false: '#767577' }}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={value => onChange(value)}
-                                />
+                            <View style={styles.consentContainer}>
+                                <Text style={styles.understood}>
+                                    <Text style={styles.required}>*</Text>
+                                    I have read and understood the above statement
+                                </Text>
+                                <View style={styles.switchConsent}>
+                                    <Switch
+                                        value={value}
+                                        onBlur={onBlur}
+                                        trackColor={{ true: 'green', false: '#767577' }}
+                                        ios_backgroundColor="#3e3e3e"
+                                        onValueChange={value => onChange(value)}
+                                    />
+
+                                </View>
+                                {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+
                             </View>
+
                         </>
                     )}
                     name="consent"
                     rules={{ required: true }}
                     defaultValue=""
                 />
-                {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-                <TouchableOpacity style={styles.button} onPressIn={() => loadingHandler()} onPress={handleSubmit(onSubmit)}>
-                    <Text>Submit</Text>
-                </TouchableOpacity>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button} onPressIn={() => loadingHandler()} onPress={handleSubmit(onSubmit)}>
+                        <Text>Submit</Text>
+                    </TouchableOpacity>
+                </View>
                 <ActivityIndicator color="green" size="large" animating={loading} />
             </View>
         </KeyboardAwareScrollView>
