@@ -18,7 +18,7 @@ import { set } from 'react-native-reanimated'
 function RegisterScreen ({ navigation }) {
     const selectionColor = '#eda488'
     const [loading, setLoading] = useState(false)
-    const [nzValue, setNzValue] = useState(false)
+    const [nzValue, setNzValue] = useState("false")
 
     const loadingHandler = () => {
         setLoading(true);
@@ -396,10 +396,12 @@ function RegisterScreen ({ navigation }) {
                                     onBlur={onBlur}
                                     trackColor={{ false: '#767577', true: 'green' }}
                                     ios_backgroundColor="#3e3e3e"
-                                    onValueChange={value => onChange(value) + setNzValue(value)}
+                                    onValueChange={value => onChange(value) + setNzValue(value.toString())}
 
                                 />
-                                <Text>{nzValue.toString()}</Text>
+                                <View>
+                                    {nzValue === "false" ? <Text>No</Text> : <Text>Yes</Text> }
+                                </View>
                             </View>
                         </>
                     )}
