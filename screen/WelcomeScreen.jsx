@@ -1,6 +1,6 @@
 //tools
 import React from 'react'
-import { View, SafeAreaView, Text, TouchableOpacity, Image,  } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, Image, } from 'react-native'
 
 //Style
 import styles from './welcomeScreenStyle.js';
@@ -14,7 +14,7 @@ function WelcomeScreen ({ navigation }) {
             />
             <SafeAreaView>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Register')}>
-                    <Text>Register</Text>
+                    <Text>Register Here</Text>
                 </TouchableOpacity>
             </SafeAreaView>
         </View>

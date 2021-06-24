@@ -7,7 +7,6 @@ import { TextInputMask } from 'react-native-masked-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // component
-
 import ModalActivityIndicator from '../components/ModalActivityIndicator.js'
 
 //firebase

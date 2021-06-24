@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     formContainer: {
         backgroundColor: '#fff',
-        paddingLeft: 100,
+        paddingLeft: 330,
     },
     userInputContainer: {
         borderWidth: 1,
