@@ -37,7 +37,8 @@ export default StyleSheet.create({
         borderRadius: 10,
         borderColor: '#eda488',
         backgroundColor: '#eda488',
-        margin: 10,
+        marginTop: 20,
+        marginBottom: 50,
         padding: 10,
         width: 180,
     },
@@ -69,6 +70,7 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
     errorText: {
+        padding: 10,
         color: "red"
     },
     required: {

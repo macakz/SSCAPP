@@ -15,7 +15,7 @@ import firebase from 'firebase'
 
 //style
 import styles from './registerScreenStyle.js';
-import { set } from 'react-native-reanimated'
+
 
 
 function RegisterScreen ({ navigation }) {
@@ -27,7 +27,7 @@ function RegisterScreen ({ navigation }) {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 3000);
+        }, 2000);
     }
     const { control, handleSubmit, formState: { errors } } = useForm();
 
@@ -438,11 +438,9 @@ function RegisterScreen ({ navigation }) {
                                         ios_backgroundColor="#3e3e3e"
                                         onValueChange={value => onChange(value)}
                                     />
-
                                 </View>
-                                {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-
                             </View>
+                            {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                         </>
                     )}
@@ -455,7 +453,7 @@ function RegisterScreen ({ navigation }) {
                         <Text>Submit</Text>
                     </TouchableOpacity>
                 </View>
-                <ModalActivityIndicator show={loading} loadingMessage="Submitting"/>
+                <ModalActivityIndicator show={loading} loadingMessage="Submitting" />
             </View>
         </KeyboardAwareScrollView>
     );
