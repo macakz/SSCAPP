@@ -77,7 +77,7 @@ function LoginScreen ({ navigation }) {
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
                 <View>
-                    <ActivityIndicator color="green" size="large" animating={loading} />
+                    <ActivityIndicator color="#eda488" size="large" animating={loading} />
 
                 </View>
             </SafeAreaView>

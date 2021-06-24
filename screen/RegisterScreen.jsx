@@ -452,7 +452,7 @@ function RegisterScreen ({ navigation }) {
                         <Text>Submit</Text>
                     </TouchableOpacity>
                 </View>
-                <ActivityIndicator color="green" size="large" animating={loading} />
+                <ActivityIndicator color="#eda488" size="large" animating={loading} />
             </View>
         </KeyboardAwareScrollView>
     );
