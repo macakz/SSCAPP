@@ -1,10 +1,14 @@
 //tools
 import React, { useState, useLayoutEffect } from 'react'
-import { View, Switch, Text, TouchableOpacity, TextInput, ActivityIndicator, } from 'react-native'
+import { View, Switch, Text, TouchableOpacity, TextInput, ActivityIndicator, Modal, } from 'react-native'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import { TextInputMask } from 'react-native-masked-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+// component
+
+import ModalActivityIndicator from '../components/ModalActivityIndicator.js'
 
 //firebase
 import 'firebase/firestore'
@@ -452,7 +456,7 @@ function RegisterScreen ({ navigation }) {
                         <Text>Submit</Text>
                     </TouchableOpacity>
                 </View>
-                <ActivityIndicator color="#eda488" size="large" animating={loading} />
+                <ModalActivityIndicator show={loading} />
             </View>
         </KeyboardAwareScrollView>
     );
