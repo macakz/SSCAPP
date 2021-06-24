@@ -84,8 +84,16 @@ export default StyleSheet.create({
         paddingBottom: 20,
         textAlign: "center",
     },
-    switch: {
+    switchResident: {
         padding: 10,
+        marginBottom: 10,
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: 'black',
+        width: 500,
+    },
+    nzValue: {
+        fontSize: 18,
 
     },
     switchConsent: {

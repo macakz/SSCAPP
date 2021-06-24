@@ -390,18 +390,20 @@ function RegisterScreen ({ navigation }) {
                             <Text style={styles.controllerTitle}>
                                 <Text style={styles.required}>*</Text>Are you a NZ resident?
                             </Text>
-                            <View style={styles.switch}>
+
+                            <View style={styles.switchResident}>
                                 <Switch
                                     value={value}
                                     onBlur={onBlur}
                                     trackColor={{ false: '#767577', true: 'green' }}
                                     ios_backgroundColor="#3e3e3e"
                                     onValueChange={value => onChange(value) + setNzValue(value.toString())}
-
                                 />
-                                <View>
-                                    {nzValue === "false" ? <Text>No</Text> : <Text>Yes</Text> }
-                                </View>
+                                {
+                                    nzValue === "true"
+                                        ? <Text style={styles.nzValue}>  Yes</Text>
+                                        : <Text style={styles.nzValue}>  No</Text>
+                                }
                             </View>
                         </>
                     )}
