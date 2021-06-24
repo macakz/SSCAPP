@@ -1,6 +1,6 @@
 //tools
 import React, { useState, useLayoutEffect } from 'react'
-import { View, Switch, Text, TouchableOpacity, TextInput, ActivityIndicator, Modal, } from 'react-native'
+import { View, Switch, Text, TouchableOpacity, TextInput, } from 'react-native'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import { TextInputMask } from 'react-native-masked-text'

@@ -4,6 +4,7 @@ export default StyleSheet.create({
     formContainer: {
         backgroundColor: '#fff',
         paddingLeft: 330,
+        // alignItems: 'center'
     },
     userInputContainer: {
         borderWidth: 1,
