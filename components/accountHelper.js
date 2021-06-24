@@ -1,3 +1,4 @@
+//firebase
 import { auth } from '../firebase'
 
 export function loginAdmin ({ email, password }) {
