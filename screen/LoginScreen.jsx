@@ -1,10 +1,10 @@
 //tools
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity, Image, TextInput, ActivityIndicator, } from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, Image, TextInput, } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 //components
-import { loginAdmin } from './accountHelper'
+import { loginAdmin } from '../components/accountHelper'
 import ModalActivityIndicator from '../components/ModalActivityIndicator.js'
 
 //firebase
