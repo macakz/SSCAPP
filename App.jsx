@@ -36,6 +36,7 @@ const transitionConfig = {
 };
 export default function App () {
   const [appIsReady, setAppisReady] = useState(false)
+  const [showReset, setShowReset] = useState("false")
 
   if (!isFirebaseAppExisted()) {
     initializeFirebase()
@@ -83,12 +84,13 @@ export default function App () {
                   },
                   headerShown: true,
                   headerRight: () => (
-                    <TouchableOpacity onPress={() => navigation.replace('Welcome')}>
+                    <TouchableOpacity onPress={() => setShowReset(true)}>
                       <View>
                         <Text style={styles.headerSubText}>
                           <AntDesign name="retweet" size={20} color="black" />
                           {' '}Reset
                         </Text>
+                        <ModalReset show={showReset} navigation = {navigation} loadingMessage="Are you sure you wish to reset the form ?" />
                       </View>
                     </TouchableOpacity>
 
@@ -103,6 +105,7 @@ export default function App () {
 
                   ),
                 })}
+                
               />
               <AppStack.Screen
                 name="Admin"
