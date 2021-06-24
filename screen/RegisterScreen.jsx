@@ -448,7 +448,7 @@ function RegisterScreen ({ navigation }) {
                     defaultValue=""
                 />
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPressIn={() => loadingHandler()} onPress={handleSubmit(onSubmit)}>
+                    <TouchableOpacity style={styles.button} onPressIn={loadingHandler} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
                 </View>

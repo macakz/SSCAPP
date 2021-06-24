@@ -1,6 +1,6 @@
 //tools
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { SafeAreaView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { SafeAreaView, View, Text, TouchableOpacity, Image, TextInput, ActivityIndicator, } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 //components
@@ -16,6 +16,14 @@ import styles from './loginScreenStyle.js';
 function LoginScreen ({ navigation }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    const loadingHandler = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 2500);
+    }
 
     function signIn () {
         loginAdmin({ email, password })
@@ -65,9 +73,13 @@ function LoginScreen ({ navigation }) {
                     value={password}
                     onChangeText={(text) => setPassword(text)}
                 />
-                <TouchableOpacity style={styles.button} onPress={signIn}>
+                <TouchableOpacity style={styles.button} onPressIn={loadingHandler} onPress={signIn}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
+                <View>
+                    <ActivityIndicator color="green" size="large" animating={loading} />
+
+                </View>
             </SafeAreaView>
         </KeyboardAwareScrollView>
     );
