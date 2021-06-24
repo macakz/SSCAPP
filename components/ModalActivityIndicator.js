@@ -8,7 +8,7 @@ export default ModalActivityIndicator = props => {
         color = "#eda488",
         backgroundColor = "transparent",
         dimLights = 0.8,
-        loadingMessage = "Submitting"
+        loadingMessage = ""
     } = props;
     return (
         <Modal transparent={true} animationType="none" visible={show}>

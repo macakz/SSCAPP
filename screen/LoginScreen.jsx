@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 //components
 import { loginAdmin } from './accountHelper'
+import ModalActivityIndicator from '../components/ModalActivityIndicator.js'
 
 //firebase
 import { auth } from '../firebase';
@@ -27,6 +28,7 @@ function LoginScreen ({ navigation }) {
 
     function signIn () {
         loginAdmin({ email, password })
+        loadingHandler()
     }
 
     useEffect(() => {
@@ -73,13 +75,11 @@ function LoginScreen ({ navigation }) {
                     value={password}
                     onChangeText={(text) => setPassword(text)}
                 />
-                <TouchableOpacity style={styles.button} onPressIn={loadingHandler} onPress={signIn}>
+                <TouchableOpacity style={styles.button} onPress={signIn}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
-                <View>
-                    <ActivityIndicator color="#eda488" size="large" animating={loading} />
+                <ModalActivityIndicator show={loading} loadingMessage="Logging in" />
 
-                </View>
             </SafeAreaView>
         </KeyboardAwareScrollView>
     );

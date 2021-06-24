@@ -456,7 +456,7 @@ function RegisterScreen ({ navigation }) {
                         <Text>Submit</Text>
                     </TouchableOpacity>
                 </View>
-                <ModalActivityIndicator show={loading} />
+                <ModalActivityIndicator show={loading} loadingMessage="Submitting"/>
             </View>
         </KeyboardAwareScrollView>
     );
