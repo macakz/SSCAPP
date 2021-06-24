@@ -1,13 +1,16 @@
+//tools
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
 import { Button, TouchableOpacity, Text, View, } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { isFirebaseAppExisted, initializeFirebase, auth } from './firebase'
 import { Provider as PaperProvider } from 'react-native-paper';
+import AppLoading from 'expo-app-loading';
 
-import { AntDesign, Feather } from '@expo/vector-icons';
+//firebase
+import { isFirebaseAppExisted, initializeFirebase } from './firebase'
+
 //Screens
 import LoginScreen from './screen/LoginScreen'
 import RegisterScreen from './screen/RegisterScreen'
@@ -16,9 +19,10 @@ import AdminScreen from './screen/AdminScreen'
 
 //Style
 import styles from './appStyle.js';
+import { AntDesign, Feather } from '@expo/vector-icons';
+
 
 const AppStack = createStackNavigator()
-
 const transitionConfig = {
   animation: 'spring',
   config: {
@@ -31,6 +35,8 @@ const transitionConfig = {
   },
 };
 export default function App () {
+  const [appIsReady, setAppisReady] = useState(false)
+
   if (!isFirebaseAppExisted()) {
     initializeFirebase()
   }

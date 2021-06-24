@@ -92,6 +92,7 @@ export default StyleSheet.create({
         borderRadius: 10,
         borderColor: 'black',
         width: 500,
+        alignItems: 'center',
     },
     nzValue: {
         fontSize: 18,

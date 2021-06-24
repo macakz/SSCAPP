@@ -404,8 +404,8 @@ function RegisterScreen ({ navigation }) {
                                 />
                                 {
                                     nzValue === "true"
-                                        ? <Text style={styles.nzValue}>  Yes</Text>
-                                        : <Text style={styles.nzValue}>  No</Text>
+                                        ? <Text style={styles.nzValue}>Yes</Text>
+                                        : <Text style={styles.nzValue}>No</Text>
                                 }
                             </View>
                         </>
