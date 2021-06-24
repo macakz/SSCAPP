@@ -6,8 +6,8 @@ export default ModalActivityIndicator = props => {
     const {
         show = false,
         color = "#eda488",
-        backgroundColor = "#f9f1f1",
-        dimLights = 0.6,
+        backgroundColor = "transparent",
+        dimLights = 0.8,
         loadingMessage = "Submitting"
     } = props;
     return (
@@ -28,7 +28,7 @@ export default ModalActivityIndicator = props => {
                     }}
                 >
                     <ActivityIndicator animating={show} color={color} size="large" />
-                    <Text style={{ color: `${color}` }}>{loadingMessage}</Text>
+                    <Text style={{ fontSize: 20, color: `${color}` }}>{loadingMessage}</Text>
                 </View>
             </View>
         </Modal>
