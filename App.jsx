@@ -1,7 +1,7 @@
 //tools
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, TouchableOpacity, Text, View, } from 'react-native';
+import { Button, TouchableOpacity, Text, View, Modal } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -20,6 +20,7 @@ import AdminScreen from './screen/AdminScreen'
 //Style
 import styles from './appStyle.js';
 import { AntDesign, Feather } from '@expo/vector-icons';
+import { set } from 'react-native-reanimated';
 
 
 const AppStack = createStackNavigator()
@@ -36,7 +37,7 @@ const transitionConfig = {
 };
 export default function App () {
   const [appIsReady, setAppisReady] = useState(false)
-  const [showReset, setShowReset] = useState("false")
+  const [showReset, setShowReset] = useState(false)
 
   if (!isFirebaseAppExisted()) {
     initializeFirebase()
@@ -90,7 +91,32 @@ export default function App () {
                           <AntDesign name="retweet" size={20} color="black" />
                           {' '}Reset
                         </Text>
-                        <ModalReset show={showReset} navigation = {navigation} loadingMessage="Are you sure you wish to reset the form ?" />
+                        <Modal transparent={true} animationType='fade' visible={showReset}>
+                          <View
+                            style={{
+                              flex: 1,
+                              alignItems: "center",
+                              justifyContent: "center",
+                              backgroundColor: 'rgba(0,0,0,0.8)'
+                            }}
+                          >
+                            <View
+                              style={{
+                                padding: 13,
+                                backgroundColor: 'transparent',
+                                borderRadius: 13
+                              }}
+                            >
+                              <Text style={{ fontSize: 20, color: '#eda488' }}>Are you sure you wish to reset the form ?</Text>
+                              <TouchableOpacity onPress={() => { setShowReset(false) + navigation.replace('Welcome') }}>
+                                <Text style={styles.button}>Yes</Text>
+                              </TouchableOpacity>
+                              <TouchableOpacity onPress={() => { setShowReset(false) }}>
+                                <Text style={styles.button}>No</Text>
+                              </TouchableOpacity>
+                            </View>
+                          </View>
+                        </Modal>
                       </View>
                     </TouchableOpacity>
 
@@ -105,7 +131,7 @@ export default function App () {
 
                   ),
                 })}
-                
+
               />
               <AppStack.Screen
                 name="Admin"

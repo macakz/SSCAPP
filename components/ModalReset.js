@@ -1,6 +1,6 @@
 //tools
 import React from 'react'
-import { View, Text, ActivityIndicator, Modal, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 
 
 export default ModalReset = props => {
@@ -46,7 +46,7 @@ export default ModalReset = props => {
                         borderRadius: 13
                     }}
                 >
-                    <Text style={{ fontSize: 20, color: `${color}` }}>{loadingMessage}</Text>
+                    <Text style={{ fontSize: 20, color: `${color}`}}>{loadingMessage}</Text>
                     <TouchableOpacity onPress={() => { navigation.replace('Welcome') }}>
                         <Text style={styles.button}>Yes</Text>
                     </TouchableOpacity>
