@@ -18,4 +18,17 @@ export default StyleSheet.create({
         margin: 4,
         width: 180,
     },
+    confirmButton: {
+
+        width: 100,
+        alignSelf: 'center',
+        padding: 10,
+        margin: 10,
+        textAlign: 'center',
+        borderWidth: 1,
+        borderColor: '#fff',
+        borderRadius: 10,
+        color: '#eda488',
+        fontSize: 20,
+    },
 });
