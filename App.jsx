@@ -38,121 +38,113 @@ export default function App () {
   const [appIsReady, setAppisReady] = useState(false)
   const [showReset, setShowReset] = useState(false)
 
+  const resetForm = () => {
+    () => navigation.replace('Welcome')
+      .finally(() => setShowReset(false)
+      )
+  }
   if (!isFirebaseAppExisted()) {
     initializeFirebase()
   }
-  
-    return (
-      <SafeAreaProvider>
-        <PaperProvider>
-          <StatusBar style="auto" />
-          <NavigationContainer>
-            <AppStack.Navigator>
-              <>
-                <AppStack.Screen
-                  name="Login"
-                  component={LoginScreen}
-                  options={{
-                    title: 'Login',
-                    headerShown: false,
-                  }}
-                />
-                <AppStack.Screen
-                  name="Welcome"
-                  component={WelcomeScreen}
-                  options={{
-                    title: 'Welcome',
-                    headerShown: false,
-                    transitionSpec: {
-                      open: transitionConfig,
-                      close: transitionConfig,
-                    },
-                  }}
-                />
-                <AppStack.Screen
-                  name="Register"
-                  component={RegisterScreen}
-                  options={({ navigation }) => ({
-                    title: 'Register',
-                    transitionSpec: {
-                      open: transitionConfig,
-                      close: transitionConfig,
-                    },
-                    headerTitleStyle: {
-                      fontSize: 20,
-                      fontWeight: 'normal'
-                    },
-                    headerShown: true,
-                    headerRight: () => (
-                      <TouchableOpacity onPress={() => setShowReset(true)}>
-                        <View>
-                          <Text style={styles.headerSubText}>
-                            <AntDesign name="retweet" size={20} color="black" />
-                            {' '}Reset
-                          </Text>
-                          <Modal transparent={true} animationType='fade' visible={showReset}>
-                            <View
-                              style={{
-                                flex: 1,
-                                alignItems: "center",
-                                justifyContent: "center",
-                                backgroundColor: 'rgba(0,0,0,0.8)'
-                              }}
-                            >
-                              <View
-                                style={{
-                                  padding: 13,
-                                  backgroundColor: 'transparent',
-                                  borderRadius: 13
-                                }}
-                              >
-                                <Text style={{ fontSize: 20, color: '#eda488' }}>Are you sure you wish to reset the form ?</Text>
-                                <TouchableOpacity onPress={() => { setShowReset(false) + navigation.replace('Welcome') }}>
-                                  <Text style={styles.button}>Yes</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => { setShowReset(false) }}>
-                                  <Text style={styles.button}>No</Text>
-                                </TouchableOpacity>
-                              </View>
-                            </View>
-                          </Modal>
-                        </View>
-                      </TouchableOpacity>
 
-                    ),
-                    headerLeft: () => (
-                      <TouchableOpacity onPress={() => navigation.replace('Admin')}>
+  return (
+    <SafeAreaProvider>
+      <PaperProvider>
+        <StatusBar style="auto" />
+        <NavigationContainer>
+          <AppStack.Navigator>
+            <>
+              <AppStack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{
+                  title: 'Login',
+                  headerShown: false,
+                }}
+              />
+              <AppStack.Screen
+                name="Welcome"
+                component={WelcomeScreen}
+                options={{
+                  title: 'Welcome',
+                  headerShown: false,
+                  transitionSpec: {
+                    open: transitionConfig,
+                    close: transitionConfig,
+                  },
+                }}
+              />
+              <AppStack.Screen
+                name="Register"
+                component={RegisterScreen}
+                options={({ navigation }) => ({
+                  title: 'Register',
+                  transitionSpec: {
+                    open: transitionConfig,
+                    close: transitionConfig,
+                  },
+                  headerTitleStyle: {
+                    fontSize: 20,
+                    fontWeight: 'normal'
+                  },
+                  headerShown: true,
+                  headerRight: () => (
+                    <TouchableOpacity onPress={() => setShowReset(true)}>
+                      <View>
                         <Text style={styles.headerSubText}>
-                          <Feather name="settings" size={20} color="black" />
-                          {' '}Admin
+                          <AntDesign name="retweet" size={20} color="black" />
+                          {' '}Reset
                         </Text>
-                      </TouchableOpacity>
+                        <Modal transparent={true} animationType='fade' visible={showReset}>
+                          <View style={styles.mainContainer}>
+                            <View style={styles.subContainer}>
+                              <Text style={styles.message}>Are you sure you wish to reset the form ?</Text>
+                              <TouchableOpacity onPress={() => resetForm()}>
+                                <Text style={styles.confirmButton}>Yes</Text>
+                              </TouchableOpacity>
+                              <TouchableOpacity onPress={() => { setShowReset(false) }}>
+                                <Text style={styles.confirmButton}>No</Text>
+                              </TouchableOpacity>
+                            </View>
+                          </View>
+                        </Modal>
+                      </View>
+                    </TouchableOpacity>
 
-                    ),
-                  })}
+                  ),
+                  headerLeft: () => (
+                    <TouchableOpacity onPress={() => navigation.replace('Admin')}>
+                      <Text style={styles.headerSubText}>
+                        <Feather name="settings" size={20} color="black" />
+                        {' '}Admin
+                      </Text>
+                    </TouchableOpacity>
 
-                />
-                <AppStack.Screen
-                  name="Admin"
-                  component={AdminScreen}
-                  options={({ navigation }) => ({
-                    title: 'Register',
-                    headerShown: true,
-                    headerLeft: () => (
-                      <Button
-                        onPress={() => navigation.replace('Welcome')}
-                        title="Register"
-                        color="#000"
-                      />
-                    ),
-                  })}
-                />
-              </>
-            </AppStack.Navigator>
-          </NavigationContainer>
-        </PaperProvider>
-      </SafeAreaProvider >
-    );
-  }
+                  ),
+                })}
+
+              />
+              <AppStack.Screen
+                name="Admin"
+                component={AdminScreen}
+                options={({ navigation }) => ({
+                  title: 'Register',
+                  headerShown: true,
+                  headerLeft: () => (
+                    <Button
+                      onPress={() => navigation.replace('Welcome')}
+                      title="Register"
+                      color="#000"
+                    />
+                  ),
+                })}
+              />
+            </>
+          </AppStack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </SafeAreaProvider >
+  );
+}
 
 
