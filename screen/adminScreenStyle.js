@@ -31,4 +31,21 @@ export default StyleSheet.create({
         color: '#eda488',
         fontSize: 20,
     },
-});
+    mainContainer: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: 'rgba(0,0,0,0.8)'
+    },
+
+    subContainer: {
+        padding: 13,
+        backgroundColor: 'transparent',
+        borderRadius: 13
+    },
+    message: {
+        fontSize: 20,
+        color: '#eda488'
+
+    },
+})
