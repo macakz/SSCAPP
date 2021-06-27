@@ -8,7 +8,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 // component
 import ModalActivityIndicator from '../components/ModalActivityIndicator.js'
-import ModalReset from '../components/ModalReset.js'
+
 //firebase
 import 'firebase/firestore'
 import firebase from 'firebase'
