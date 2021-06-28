@@ -38,11 +38,11 @@ export default function App () {
   const [appIsReady, setAppisReady] = useState(false)
   const [showReset, setShowReset] = useState(false)
 
-  const resetForm = () => {
-    () => navigation.replace('Welcome')
-      .finally(() => setShowReset(false)
-      )
-  }
+  // const resetForm = () => {
+  //   navigation.replace('Welcome')
+  //     .then(setShowReset(false))
+
+  // }
   if (!isFirebaseAppExisted()) {
     initializeFirebase()
   }
@@ -99,7 +99,7 @@ export default function App () {
                           <View style={styles.mainContainer}>
                             <View style={styles.subContainer}>
                               <Text style={styles.message}>Are you sure you wish to reset the form ?</Text>
-                              <TouchableOpacity onPress={() => resetForm()}>
+                              <TouchableOpacity onPress={() => setShowReset(false) + (navigation.replace('Welcome'))}>
                                 <Text style={styles.confirmButton}>Yes</Text>
                               </TouchableOpacity>
                               <TouchableOpacity onPress={() => { setShowReset(false) }}>
