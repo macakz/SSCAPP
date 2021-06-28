@@ -6,7 +6,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer, } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Provider as PaperProvider } from 'react-native-paper';
-import AppLoading from 'expo-app-loading';
 
 //firebase
 import { isFirebaseAppExisted, initializeFirebase } from './firebase'
@@ -35,7 +34,6 @@ const transitionConfig = {
   },
 };
 export default function App () {
-  const [appIsReady, setAppisReady] = useState(false)
   const [showReset, setShowReset] = useState(false)
 
   const resetForm = ({ navigation }) => {
