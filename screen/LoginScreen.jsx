@@ -15,15 +15,17 @@ import styles from './loginScreenStyle.js';
 
 
 function LoginScreen ({ navigation }) {
+    //states
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
 
+    //handlers
     const loadingHandler = () => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 2500);
+        }, 2000);
     }
 
     function signIn () {

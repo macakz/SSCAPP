@@ -11,7 +11,10 @@ import styles from './adminScreenStyle.js';
 
 
 function AdminScreen ({ navigation }) {
+    //states
     const [showReset, setShowReset] = useState(false)
+
+    //handlers
     const signOut = () => {
         auth().signOut()
             .then(
@@ -25,6 +28,7 @@ function AdminScreen ({ navigation }) {
             title: 'Administration',
         })
     })
+    
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={() => setShowReset(true)}>

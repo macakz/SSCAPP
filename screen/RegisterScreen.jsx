@@ -19,7 +19,11 @@ import styles from './registerScreenStyle.js';
 
 
 function RegisterScreen ({ navigation }) {
+    //declarations
     const selectionColor = '#eda488'
+    const { control, handleSubmit, formState: { errors } } = useForm();
+    const db = firebase.firestore()
+
 
     //States 
     const [loading, setLoading] = useState(false)
@@ -32,10 +36,8 @@ function RegisterScreen ({ navigation }) {
             setLoading(false);
         }, 1500);
     }
-    const { control, handleSubmit, formState: { errors } } = useForm();
 
-    const db = firebase.firestore()
-
+    //handlers
     const onSubmit = (data) => {
         db.collection("Patient")
             .add({ data, createdAt: firebase.firestore.Timestamp.now() })
