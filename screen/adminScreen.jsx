@@ -12,7 +12,6 @@ import styles from './adminScreenStyle.js';
 
 function AdminScreen ({ navigation }) {
     const [showReset, setShowReset] = useState(false)
-
     const signOut = () => {
         auth().signOut()
             .then(
@@ -21,14 +20,11 @@ function AdminScreen ({ navigation }) {
             .finally(() => setShowReset(false)
             )
     }
-
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Administration',
         })
     })
-
-
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={() => setShowReset(true)}>
@@ -37,7 +33,7 @@ function AdminScreen ({ navigation }) {
             <Modal transparent={true} animationType='fade' visible={showReset}>
                 <View style={styles.mainContainer}>
                     <View style={styles.subContainer}>
-                        <Text style={styles.message}>Are you sure you wish to reset the form ?</Text>
+                        <Text style={styles.message}>Are you sure you wish sign out ?</Text>
                         <TouchableOpacity onPress={() => signOut()}>
                             <Text style={styles.confirmButton}>Yes</Text>
                         </TouchableOpacity>

@@ -27,7 +27,7 @@ function RegisterScreen ({ navigation }) {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 2000);
+        }, 1500);
     }
     const { control, handleSubmit, formState: { errors } } = useForm();
 
