@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, TouchableOpacity, Text, View, Modal } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Provider as PaperProvider } from 'react-native-paper';
 import AppLoading from 'expo-app-loading';
@@ -38,11 +38,13 @@ export default function App () {
   const [appIsReady, setAppisReady] = useState(false)
   const [showReset, setShowReset] = useState(false)
 
-  // const resetForm = () => {
-  //   navigation.replace('Welcome')
-  //     .then(setShowReset(false))
+  const resetForm = ({ navigation }) => {
+    setShowReset(false)
+    setTimeout(() => {
+      navigation.replace('Welcome');
+    }, 1000)
+  }
 
-  // }
   if (!isFirebaseAppExisted()) {
     initializeFirebase()
   }
@@ -99,7 +101,7 @@ export default function App () {
                           <View style={styles.mainContainer}>
                             <View style={styles.subContainer}>
                               <Text style={styles.message}>Are you sure you wish to reset the form ?</Text>
-                              <TouchableOpacity onPress={() => setShowReset(false) + (navigation.replace('Welcome'))}>
+                              <TouchableOpacity onPress={() => resetForm({ navigation })}>
                                 <Text style={styles.confirmButton}>Yes</Text>
                               </TouchableOpacity>
                               <TouchableOpacity onPress={() => { setShowReset(false) }}>
