@@ -20,8 +20,11 @@ import styles from './registerScreenStyle.js';
 
 function RegisterScreen ({ navigation }) {
     const selectionColor = '#eda488'
+
+    //States 
     const [loading, setLoading] = useState(false)
     const [nzValue, setNzValue] = useState("false")
+    const [consent, setConsent] = useState("false")
 
     const loadingHandler = () => {
         setLoading(true);
@@ -38,6 +41,7 @@ function RegisterScreen ({ navigation }) {
             .add({ data, createdAt: firebase.firestore.Timestamp.now() })
             .then(() => { navigation.replace('Welcome') })
     }
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Register',
@@ -51,7 +55,6 @@ function RegisterScreen ({ navigation }) {
             </Text>
             <View style={styles.formContainer}>
                 {/* identity details */}
-
                 <Text style={styles.controllerTitle}>
                     {" "}National Health Index:
                 </Text>
@@ -70,6 +73,7 @@ function RegisterScreen ({ navigation }) {
                     name="nationalHealthIndex"
                     defaultValue=""
                 />
+
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Title:
                 </Text>
@@ -89,7 +93,6 @@ function RegisterScreen ({ navigation }) {
                             <Picker.Item label="Miss" value="Miss" />
                             <Picker.Item label="Ms" value="Ms" />
                         </Picker>
-
                     )}
                     name="title"
                     rules={{ required: true, minLength: 2 }}
@@ -118,6 +121,7 @@ function RegisterScreen ({ navigation }) {
                 />
                 {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.firstName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
+
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Last Name:
                 </Text>
@@ -161,6 +165,7 @@ function RegisterScreen ({ navigation }) {
                 />
                 {errors.preferredName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.preferredName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
+
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Date of Birth:
                 </Text>
@@ -280,6 +285,7 @@ function RegisterScreen ({ navigation }) {
                     defaultValue=""
                 />
                 {errors.gpName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>GP Suburb:
                 </Text>
@@ -436,8 +442,13 @@ function RegisterScreen ({ navigation }) {
                                         onBlur={onBlur}
                                         trackColor={{ true: 'green', false: '#767577' }}
                                         ios_backgroundColor="#3e3e3e"
-                                        onValueChange={value => onChange(value)}
+                                        onValueChange={value => onChange(value) + setConsent(value.toString())}
                                     />
+                                    {
+                                        consent === "true"
+                                            ? <Text style={styles.nzValue}>Yes</Text>
+                                            : <Text style={styles.nzValue}>No</Text>
+                                    }
                                 </View>
                             </View>
                             {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
