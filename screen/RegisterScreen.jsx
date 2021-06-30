@@ -406,6 +406,8 @@ function RegisterScreen ({ navigation }) {
                     defaultValue=""
                 />
 
+                {/* ------------ residency ------------ */}
+
                 <Controller
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
@@ -433,6 +435,8 @@ function RegisterScreen ({ navigation }) {
                     name="nzResident"
                     defaultValue=""
                 />
+
+                {/* ------------ consent ------------ */}
 
                 <Controller
                     control={control}
