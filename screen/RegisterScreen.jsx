@@ -435,7 +435,34 @@ function RegisterScreen ({ navigation }) {
                     name="nzResident"
                     defaultValue=""
                 />
+                {/* ------------ additional questions ------------ */}
+                <Controller
+                    control={control}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <>
+                            <Text style={styles.controllerTitle}>
+                                {" "}Are you interested in any cosmetic procedures?<Text style={styles.optional}>(optional)</Text>
+                            </Text>
 
+                            <View style={styles.switchResident}>
+                                <Switch
+                                    value={value}
+                                    onBlur={onBlur}
+                                    trackColor={{ false: '#767577', true: 'green' }}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={value => onChange(value) + setNzValue(value.toString())}
+                                />
+                                {
+                                    nzValue === "true"
+                                        ? <Text style={styles.nzValue}>Yes</Text>
+                                        : <Text style={styles.nzValue}>No</Text>
+                                }
+                            </View>
+                        </>
+                    )}
+                    name="cosemtic"
+                    defaultValue=""
+                />
                 {/* ------------ consent ------------ */}
 
                 <Controller

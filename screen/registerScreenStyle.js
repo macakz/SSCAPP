@@ -110,5 +110,8 @@ export default StyleSheet.create({
         borderColor: '#eda488',
         padding: 10,
         width: 500,
+    },
+    optional: {
+        fontStyle: 'italic',
     }
 });
