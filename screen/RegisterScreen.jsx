@@ -56,7 +56,7 @@ function RegisterScreen ({ navigation }) {
                 Please fill in your details below, anything marked <Text style={styles.required}>*</Text> is required.
             </Text>
             <View style={styles.formContainer}>
-                {/* identity details */}
+                {/* ------------identity details------------ */}
                 <Text style={styles.controllerTitle}>
                     {" "}National Health Index:
                 </Text>
@@ -201,7 +201,7 @@ function RegisterScreen ({ navigation }) {
                 {errors.dateOfBirth?.type === "minLength" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
                 {errors.dateOfBirth?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
 
-                {/* contact details */}
+                {/* ------------contact details------------ */}
 
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Address:
@@ -274,7 +274,7 @@ function RegisterScreen ({ navigation }) {
                 {errors.email?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.email?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid email.</Text>}
 
-                {/* GP details */}
+                {/* ------------GP details------------ */}
 
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>GP Name:
@@ -318,7 +318,7 @@ function RegisterScreen ({ navigation }) {
                 {/* validation*/}
                 {errors.gpSuburb?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
-                {/* medication / allergies  details*/}
+                {/* ------------medication / allergies  details------------ */}
 
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Current Medications (Please include any supplements):
@@ -368,7 +368,7 @@ function RegisterScreen ({ navigation }) {
                 {errors.drugAllergies?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.drugAllergies?.type === "minLength" && <Text style={styles.errorText}>Please state your drug allergies, or type none.</Text>}
 
-                {/* insurance details */}
+                {/* ------------insurance details------------ */}
 
                 <Text style={styles.controllerTitle}>
                     {" "}Insurance Company:
