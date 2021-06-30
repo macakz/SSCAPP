@@ -100,6 +100,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, minLength: 2 }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.title && <Text style={styles.errorText}>This is required.</Text>}
 
                 <Text style={styles.controllerTitle}>
@@ -121,6 +122,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.firstName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
 
@@ -143,6 +145,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.firstName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.lastName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
 
@@ -165,6 +168,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.preferredName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.preferredName?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid name.</Text>}
 
@@ -192,6 +196,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, minLength: 8, pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/ }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.dateOfBirth?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.dateOfBirth?.type === "minLength" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
                 {errors.dateOfBirth?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid date of birth</Text>}
@@ -217,6 +222,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.address?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                 <Text style={styles.controllerTitle}>
@@ -239,6 +245,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, pattern: /([1-9][0-9]*)|0/ }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.phone?.type === "required" && <Text style={styles.errorText} t>This is required.</Text>}
                 {errors.phone?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid phone number.</Text>}
 
@@ -263,6 +270,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.email?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.email?.type === "pattern" && <Text style={styles.errorText}>Please enter a valid email.</Text>}
 
@@ -286,6 +294,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.gpName?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                 <Text style={styles.controllerTitle}>
@@ -306,6 +315,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.gpSuburb?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                 {/* medication / allergies  details*/}
@@ -330,6 +340,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, minLength: 4, }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.currentMedication?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.currentMedication?.type === "minLength" && <Text style={styles.errorText}>Please state your current medications, or type none.</Text>}
 
@@ -353,6 +364,7 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true, minLength: 4, }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.drugAllergies?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                 {errors.drugAllergies?.type === "minLength" && <Text style={styles.errorText}>Please state your drug allergies, or type none.</Text>}
 
@@ -460,8 +472,8 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true }}
                     defaultValue=""
                 />
+                {/* validation*/}
                 {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-
 
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Please type your first and last name to sign the form:
@@ -486,11 +498,10 @@ function RegisterScreen ({ navigation }) {
                         rules={{ required: true, minLength: 4, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
+                    {/* validation*/}
                     {errors.signature?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
                     {errors.signature?.type === "pattern" && <Text style={styles.errorText}>Please type your first and last name.</Text>}
                     {errors.signature?.type === "minLength" && <Text style={styles.errorText}>Please type your first and last name.</Text>}
-
-
 
                     <TouchableOpacity style={styles.button} onPressIn={loadingHandler} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
