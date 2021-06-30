@@ -29,6 +29,8 @@ function RegisterScreen ({ navigation }) {
     const [loading, setLoading] = useState(false)
     const [nzValue, setNzValue] = useState("false")
     const [consent, setConsent] = useState("false")
+    const [cosmetic, setCosmetic] = useState("false")
+
 
     const loadingHandler = () => {
         setLoading(true);
@@ -416,7 +418,7 @@ function RegisterScreen ({ navigation }) {
                                 <Text style={styles.required}>*</Text>Are you a NZ resident?
                             </Text>
 
-                            <View style={styles.switchResident}>
+                            <View style={styles.switchQuestion}>
                                 <Switch
                                     value={value}
                                     onBlur={onBlur}
@@ -426,8 +428,8 @@ function RegisterScreen ({ navigation }) {
                                 />
                                 {
                                     nzValue === "true"
-                                        ? <Text style={styles.nzValue}>Yes</Text>
-                                        : <Text style={styles.nzValue}>No</Text>
+                                        ? <Text style={styles.switchQuestionText}>Yes</Text>
+                                        : <Text style={styles.switchQuestionText}>No</Text>
                                 }
                             </View>
                         </>
@@ -444,18 +446,18 @@ function RegisterScreen ({ navigation }) {
                                 {" "}Are you interested in any cosmetic procedures?<Text style={styles.optional}>(optional)</Text>
                             </Text>
 
-                            <View style={styles.switchResident}>
+                            <View style={styles.switchQuestion}>
                                 <Switch
                                     value={value}
                                     onBlur={onBlur}
                                     trackColor={{ false: '#767577', true: 'green' }}
                                     ios_backgroundColor="#3e3e3e"
-                                    onValueChange={value => onChange(value) + setNzValue(value.toString())}
+                                    onValueChange={value => onChange(value) + setCosmetic(value.toString())}
                                 />
                                 {
-                                    nzValue === "true"
-                                        ? <Text style={styles.nzValue}>Yes</Text>
-                                        : <Text style={styles.nzValue}>No</Text>
+                                    cosmetic === "true"
+                                        ? <Text style={styles.switchQuestionText}>Yes</Text>
+                                        : <Text style={styles.switchQuestionText}>No</Text>
                                 }
                             </View>
                         </>

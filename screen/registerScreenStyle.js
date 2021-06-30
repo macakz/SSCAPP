@@ -87,7 +87,7 @@ export default StyleSheet.create({
         paddingBottom: 20,
         textAlign: "center",
     },
-    switchResident: {
+    switchQuestion: {
         padding: 10,
         marginBottom: 10,
         borderWidth: 1,
@@ -96,7 +96,7 @@ export default StyleSheet.create({
         width: 500,
         alignItems: 'center',
     },
-    nzValue: {
+    switchQuestionText: {
         fontSize: 18,
 
     },
