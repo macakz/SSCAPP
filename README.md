@@ -4,7 +4,7 @@ Current Development Photos:
 
 ### Login Window:
 ![](/assets/developmentImages/21F09F16-5324-49DE-A2B1-088EB431D9C5_1_105_c.jpeg)
-### Logging in Window(Modal):
+### Logging in Window (Modal):
 ![](/assets/developmentImages/00109081-76B0-41D4-ADF5-7EF2FA3278AC_1_105_c.jpeg)
 ### Welcome Screen:
 ![](/assets/developmentImages/AD08B74F-4960-429D-B3F0-FAFA453DDA65_1_105_c.jpeg)
