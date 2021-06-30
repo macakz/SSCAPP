@@ -9,6 +9,7 @@ import { auth } from '../firebase'
 import styles from './adminScreenStyle.js';
 
 
+
 function AdminScreen ({ navigation }) {
     //states
     const [showReset, setShowReset] = useState(false)
