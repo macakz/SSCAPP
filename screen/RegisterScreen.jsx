@@ -482,12 +482,12 @@ function RegisterScreen ({ navigation }) {
                             </>
                         )}
                         name="signature"
-
-                        rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
+                        rules={{ required: true, minLength: 4, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
                     {errors.signature?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
-                    {errors.signature?.type === "pattern" && <Text style={styles.errorText}>Please type your full, first and last name.</Text>}
+                    {errors.signature?.type === "pattern" && <Text style={styles.errorText}>Please type your first and last name.</Text>}
+                    {errors.signature?.type === "minLength" && <Text style={styles.errorText}>Please type your first and last name.</Text>}
 
 
 
