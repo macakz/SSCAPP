@@ -473,7 +473,7 @@ function RegisterScreen ({ navigation }) {
                                 <TextInput
                                     selectionColor={selectionColor}
                                     keyboardType='numeric'
-                                    style={styles.userInputContainer}
+                                    style={styles.signatureContainer}
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
@@ -482,9 +482,14 @@ function RegisterScreen ({ navigation }) {
                             </>
                         )}
                         name="signature"
-                        rules={{ required: true, minLength: 4, }}
+
+                        rules={{ required: true, pattern: /^[A-Za-z]+$/i }}
                         defaultValue=""
                     />
+                    {errors.signature?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+                    {errors.signature?.type === "pattern" && <Text style={styles.errorText}>Please type your full, first and last name.</Text>}
+
+
 
                     <TouchableOpacity style={styles.button} onPressIn={loadingHandler} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>

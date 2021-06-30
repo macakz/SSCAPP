@@ -104,4 +104,11 @@ export default StyleSheet.create({
         padding: 10,
         alignItems: 'center',
     },
+    signatureContainer: {
+        borderWidth: 3,
+        borderRadius: 10,
+        borderColor: '#eda488',
+        padding: 10,
+        width: 500,
+    }
 });
