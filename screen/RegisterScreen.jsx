@@ -453,7 +453,6 @@ function RegisterScreen ({ navigation }) {
                                     }
                                 </View>
                             </View>
-                            {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
 
                         </>
                     )}
@@ -461,6 +460,8 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true }}
                     defaultValue=""
                 />
+                {errors.consent?.type === "required" && <Text style={styles.errorText}>This is required.</Text>}
+
 
                 <Text style={styles.controllerTitle}>
                     <Text style={styles.required}>*</Text>Please type your first and last name to sign the form:
