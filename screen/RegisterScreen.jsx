@@ -228,7 +228,7 @@ function RegisterScreen ({ navigation }) {
                         <TextInput
                             selectionColor={selectionColor}
                             keyboardType='numeric'
-                            placeholder="Phone Number"
+                            placeholder=""
                             style={styles.userInputContainer}
                             onBlur={onBlur}
                             onChangeText={value => onChange(value)}
@@ -461,7 +461,31 @@ function RegisterScreen ({ navigation }) {
                     rules={{ required: true }}
                     defaultValue=""
                 />
+
+                <Text style={styles.controllerTitle}>
+                    <Text style={styles.required}>*</Text>Please type your first and last name to sign the form:
+                </Text>
                 <View style={styles.buttonContainer}>
+                    <Controller
+                        control={control}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <>
+                                <TextInput
+                                    selectionColor={selectionColor}
+                                    keyboardType='numeric'
+                                    style={styles.userInputContainer}
+                                    onBlur={onBlur}
+                                    onChangeText={value => onChange(value)}
+                                    value={value}
+                                />
+
+                            </>
+                        )}
+                        name="signature"
+                        rules={{ required: true, minLength: 4, }}
+                        defaultValue=""
+                    />
+
                     <TouchableOpacity style={styles.button} onPressIn={loadingHandler} onPress={handleSubmit(onSubmit)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
