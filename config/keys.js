@@ -1,11 +1,11 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyB3nZQkg_V1drTDyQ6RhB41rvcZiX4HMeg",
-    authDomain: "skin-specialist-centre.firebaseapp.com",
-    databaseURL: "https://skin-specialist-centre-default-rtdb.firebaseio.com",
-    projectId: "skin-specialist-centre",
-    storageBucket: "skin-specialist-centre.appspot.com",
-    messagingSenderId: "186609597149",
-    appId: "1:186609597149:web:40ba8c5ecf259e38467934"
+    apiKey: "AIzaSyAKcxJpM9nddIyrA1e_K3q-3_MIFuoN-WE",
+    authDomain: "sscapp-f229e.firebaseapp.com",
+    projectId: "sscapp-f229e",
+    storageBucket: "sscapp-f229e.appspot.com",
+    messagingSenderId: "947795612999",
+    appId: "1:947795612999:web:44946ed75a944ca658a862",
+    measurementId: "G-4XW288R227"
 }
 
 export default {
