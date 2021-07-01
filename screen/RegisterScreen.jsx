@@ -1,10 +1,11 @@
 //tools
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useRef, useState, useLayoutEffect } from 'react'
 import { View, Switch, Text, TouchableOpacity, TextInput, } from 'react-native'
 import { useForm, Controller } from "react-hook-form"
 import { Picker } from '@react-native-picker/picker'
 import { TextInputMask } from 'react-native-masked-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { SignatureView } from 'react-native-signature-capture-view';
 
 // component
 import ModalActivityIndicator from '../components/ModalActivityIndicator.js'
@@ -13,7 +14,6 @@ import ModalActivityIndicator from '../components/ModalActivityIndicator.js'
 import 'firebase/firestore'
 import firebase from 'firebase'
 import { storage } from '../firebase'
-const storageRef = storage.ref();
 
 
 //style
@@ -26,13 +26,16 @@ function RegisterScreen ({ navigation }) {
     const selectionColor = '#eda488'
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
-    const imagesRef = storageRef.child('images')
+    const storageRef = storage.ref();
+    const signaturesRef = storageRef.child('signatures')
 
     //States 
     const [loading, setLoading] = useState(false)
     const [nzValue, setNzValue] = useState("false")
     const [consent, setConsent] = useState("false")
     const [cosmetic, setCosmetic] = useState("false")
+    const signatureRef = useRef(null);
+    const [text, setText] = useState('')
 
 
     const loadingHandler = () => {
@@ -543,8 +546,51 @@ function RegisterScreen ({ navigation }) {
                         <Text>Submit</Text>
                     </TouchableOpacity>
                 </View>
+                
                 <ModalActivityIndicator show={loading} loadingMessage="Submitting" />
+                <View>
+                    <SignatureView
+                        style={{
+                            borderWidth: 2,
+                            height: 200,
+                            width: 1000,
+                        }}
+
+                        ref={signatureRef}
+                        // onSave is automatically called whenever signature-pad onEnd is called and saveSignature is called
+                        onSave={(val) => {
+                            //  a base64 encoded image
+                            console.log('saved signature')
+                            console.log(val);
+                            setText(val)
+
+                        }}
+                        onClear={() => {
+                            console.log('cleared signature')
+                            setText('')
+                        }}
+                    />
+                    <View style={{ flexDirection: 'row', justifyContent: 'center', height: 50 }}>
+                        <TouchableOpacity
+                            style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}
+                            onPress={() => {
+                                signatureRef.current.clearSignature();
+                            }}>
+                            <Text>Clear</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}
+                            onPress={() => {
+                                signatureRef.current.saveSignature();
+                            }}>
+                            <Text>Save</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    
+                </View>
             </View>
+            
         </KeyboardAwareScrollView>
     );
 }
