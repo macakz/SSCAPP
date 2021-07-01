@@ -1,18 +1,20 @@
+//firbase
 import * as firebase from 'firebase'
 import 'firebase/auth'
 import { firebaseConfig } from '../config/keys'
 
+//checking firebase
 export function isFirebaseAppExisted () {
 	return firebase.default.apps.length > 0
 }
 export function initializeFirebase () {
 	firebase.default.initializeApp(firebaseConfig)
 }
+
+//auth
 export const { auth } = firebase.default
 
+//storage
+export const storage = firebase.storage();
 
-export default {
-	isFirebaseAppExisted,
-	initializeFirebase,
-	auth,
-}
+

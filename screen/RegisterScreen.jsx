@@ -12,6 +12,9 @@ import ModalActivityIndicator from '../components/ModalActivityIndicator.js'
 //firebase
 import 'firebase/firestore'
 import firebase from 'firebase'
+import { storage } from '../firebase'
+const storageRef = storage.ref();
+
 
 //style
 import styles from './registerScreenStyle.js';
@@ -23,7 +26,7 @@ function RegisterScreen ({ navigation }) {
     const selectionColor = '#eda488'
     const { control, handleSubmit, formState: { errors } } = useForm();
     const db = firebase.firestore()
-
+    const imagesRef = storageRef.child('images')
 
     //States 
     const [loading, setLoading] = useState(false)
